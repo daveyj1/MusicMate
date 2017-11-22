@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script scr="index.js"></script>
-    <script scr="background.css"></script>
+    <script src="index.js"></script>
+    <link href="background.css" type="text/css">
     <title>Joe has big titties</title>
 </head>
 <style>
+
     .bg {
         /* The image used */
         background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
@@ -18,14 +19,15 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+        margin: 0;
+        padding: 0;
     }
 </style>
 
-<body>
-<div style="display: flex; justify-content: center; align-content: center; background-color: aquamarine; height: 100%">
+<body class="bg">
+<div style="justify-content: center; align-content: center; background-color: aquamarine;">
     <span>Enter search: <input type="text"></span>
     <button class="btn btn-outline-success" onclick="buttonClick()">Enter</button>
 </div>
-    <div class="bg"></div>
 </body>
 </html>
