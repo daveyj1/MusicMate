@@ -217,21 +217,20 @@
 <div class="container">
     <h1 class="welcome text-center">Welcome to MusicMatch!</h1>
     <div class="card card-container">
-        <h2 class='login_title text-center'>Login with Spotify</h2>
+        <h2 class='login_title text-center'>Enter Three Genres</h2>
         <hr>
 
         <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
-            <p class="input_title">Username</p>
-            <input type="text" id="inputEmail" class="login_box" placeholder="ballsack69" required autofocus>
-            <p class="input_title">Password</p>
-            <input type="password" id="inputPassword" class="login_box" placeholder="******" required>
+            <input type="text" id="firstGenre" class="login_box" placeholder="e.g. Rock, Hip Hop" required autofocus>
+            <input type="password" id="secondGenre" class="login_box" required>
+            <input type="password" id="thirdGenre" class="login_box"  required>
             <div id="remember" class="checkbox">
                 <label>
 
                 </label>
             </div>
-            <button class="btn btn-lg btn-primary" type="submit">Login</button>
+            <button class="btn btn-lg btn-primary" type="submit">Create Playlist</button>
         </form><!-- /form -->
     </div><!-- /card-container -->
 </div><!-- /container -->

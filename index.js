@@ -7,6 +7,8 @@ var client_id = '9e91dbd172c24b608a18276182a66308'; // my client id
 var client_secret = '150e886419e04d43ad8fd06225d0a56d'; // my secret key
 var redirect_uri = 'http://localhost:8888/callback'; // my redirect uri
 
-function buttonClick() {
-    alert("Joe has big titties");
+function login() {
+    var userName = document.getElementById("inputUsername").value;
+    var userName = document.getElementById("inputPassword").value;
+
 }
