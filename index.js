@@ -16,8 +16,13 @@ app.events = function() {
         var genreArray = [genreOne, genreTwo, genreThree];
         let search = genreArray.map(genreName => app.searchGenres(genreType));
         console.log(search);
+        $.when(...search)
+            .then((...results) => {
+                console.log(results);
+            });
+
     });
-}
+};
 
 app.searchGenres = (genreName) => $.ajax({
     url: '${app.apiUrl}/search',
@@ -28,6 +33,8 @@ app.searchGenres = (genreName) => $.ajax({
         type: 'artist'
     }
 });
+
+
 
 app.init = function() {
     app.events();
