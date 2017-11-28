@@ -1,12 +1,9 @@
 body, html {
     height: 100%;
-    background-repeat: no-repeat;
-    background: rgb(185,210,224); /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover,  rgba(185,210,224,1) 0%, rgba(187,214,228,1) 0%, rgba(186,211,225,1) 15%, rgba(186,211,225,1) 38%, rgba(169,199,215,1) 68%, rgba(169,199,215,1) 68%, rgba(169,199,215,1) 82%, rgba(158,191,208,1) 100%); /* FF3.6-15 */
-    background: -webkit-radial-gradient(center, ellipse cover,  rgba(185,210,224,1) 0%,rgba(187,214,228,1) 0%,rgba(186,211,225,1) 15%,rgba(186,211,225,1) 38%,rgba(169,199,215,1) 68%,rgba(169,199,215,1) 68%,rgba(169,199,215,1) 82%,rgba(158,191,208,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: radial-gradient(ellipse at center,  rgba(185,210,224,1) 0%,rgba(187,214,228,1) 0%,rgba(186,211,225,1) 15%,rgba(186,211,225,1) 38%,rgba(169,199,215,1) 68%,rgba(169,199,215,1) 68%,rgba(169,199,215,1) 82%,rgba(158,191,208,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b9d2e0', endColorstr='#9ebfd0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+    background: #348F50;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #56B4D3, #348F50);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #56B4D3, #348F50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    overflow: hidden;
 }
 
 .login_box{
@@ -14,37 +11,44 @@ body, html {
     border:3px solid #F4F4F4;
     padding-left: 15px;
     margin-bottom:25px;
+    margin-top: 15px;
 }
 .input_title{
-    color:rgba(164, 164, 164, 0.9);
+    color:#696969;
     padding-left:3px;
     margin-bottom: 2px;
 }
 
 hr{
     width:100%;
+    color: #696969;
 }
 
 .welcome{
-    font-family: "myriad-pro",sans-serif;
-    font-style: normal;
+    font-family: Futura;
+    font-style: italic;
     font-weight: 100;
+    font-size: 50px;
     color:#FFFFFF;
-    margin-bottom:25px;
-    margin-top:50px;
-
+    margin-bottom: 25px;
+    margin-top: 75px;
 }
 
 .login_title{
     font-family: "myriad-pro",sans-serif;
     font-style: normal;
     font-weight: 100;
-    color:rgba(164, 164, 164, 0.44);
+    /*color:rgba(164, 164, 164, 0.44);*/
+    color:#696969;
+    line-height: 200%;
+    margin: 0;
+    margin-top: 15px;
 }
 
 .card-container.card {
     max-width: 350px;
-
+    border-radius: 20px;
+    margin-top: 100px;
 }
 
 .btn {
@@ -64,7 +68,7 @@ hr{
  * Card component
  */
 .card {
-    background-color: #FFFFFF;
+    background-color: rgba(247,247,247,0.6);
     /* just in case there no content*/
     padding: 1px 25px 30px;
     margin: 0 auto 25px;
@@ -174,4 +178,3 @@ hr{
 .forgot-password:active,
 .forgot-password:focus{
     color: rgb(12, 97, 33);
-}
