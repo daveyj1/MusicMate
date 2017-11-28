@@ -35,7 +35,6 @@ app.searchGenres = (genreName) => $.ajax({
 });
 
 
-
 app.init = function() {
     app.events();
 };
