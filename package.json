@@ -11,5 +11,8 @@
     "node": "^9.2.0",
     "request": "^2.34.0",
     "spotify-web-api-node": "^2.5.0"
+  },
+  "engines": {
+    "node": "9.1.0"
   }
 }
