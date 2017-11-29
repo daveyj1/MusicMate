@@ -65,4 +65,4 @@ app.post('/searchArtist', (request, response) => {
     }
 });
 
-app.listen(8000);
+app.set('port', (process.env.PORT || 5000));
