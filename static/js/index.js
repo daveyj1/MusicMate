@@ -4,6 +4,8 @@ var redirect_uri = 'http://localhost:8888/callback'; // my redirect uri
 
 const app = {};
 
+app.apiUrl = 'https://api.spotify.com/v1';
+
 app.events = function() {
     $('form').on('submit', function(e) {
         e.preventDefault();
@@ -14,7 +16,7 @@ app.events = function() {
         console.log(genreTwo);
         console.log(genreThree);
         var genreArray = [genreOne, genreTwo, genreThree];
-        let search = genreArray.map(genreName => app.searchGenres(genreType));
+        let search = genreArray.map(genreName => app.searchGenres(genreName));
         console.log(search);
         $.when(...search)
             .then((...results) => {
@@ -25,7 +27,7 @@ app.events = function() {
 };
 
 app.searchGenres = (genreName) => $.ajax({
-    url: '${app.apiUrl}/search',
+    url: `${app.apiUrl}/artists`,
     method: 'GET',
     dataType: 'json',
     data: {
