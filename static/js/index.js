@@ -63,6 +63,7 @@ function getArtists() {
         success: (data) => {
             let path = data.dataArray;
             let myContainer = document.getElementById('myContainer');
+            myContainer.innerHTML = '';
             for (let key in path) {
                 if (path.hasOwnProperty(key)) {
                     let albumPath = path[key].body.tracks.items;
@@ -73,11 +74,11 @@ function getArtists() {
                                 let button = document.createElement("BUTTON");
                                 let text = document.createTextNode(albumPath[albums].name);
                                 button.appendChild(text);
-                                myContainer.appendChild(button);
                                 button.onclick = () => {
                                     let audio = new Audio(albumPath[albums].preview_url);
                                     audio.play();
                                 };
+                                myContainer.appendChild(button);
                             }
 
                         }
