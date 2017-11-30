@@ -12,6 +12,8 @@ function getArtists() {
         alert("Please enter at least 1 artist.");
         return;
     }
+    let spinner = $("#spinner");
+    spinner.show();
     $.ajax({
         url: '/searchArtist',
         dataType: 'json',
@@ -52,5 +54,7 @@ function getArtists() {
         error: (err) => {
             console.log(err);
         }
+    }).done(()=>{
+        spinner.hide();
     });
 }

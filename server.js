@@ -51,7 +51,7 @@ app.post('/searchArtist', (request, response) => {
     let count = Object.keys(artistsObject).length;
     for (let key in artistsObject) {
         if (artistsObject.hasOwnProperty(key))
-            spotifyApi.searchTracks('artist:' + artistsObject[key])
+            spotifyApi.searchTracks('artist:' + artistsObject[key],{limit: 20})
                 .then((data) => {
                     dataArray.push(data);
                     count--;
@@ -69,15 +69,5 @@ app.post('/searchArtist', (request, response) => {
                 });
     }
 });
-// app.post('/searchAlbums', (request, response) => {
-//     let ids = request.body;
-//     console.log(ids);
-//     spotifyApi.searchTracks('artist:lil wayne')
-//         .then((data) => {
-//             return response.status(200).json(data);
-//         });
-// });
-
 app.set('port', (process.env.PORT || 8000));
 app.listen(app.get('port'));
-
