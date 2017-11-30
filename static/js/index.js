@@ -45,26 +45,47 @@
 function getArtists() {
     let artists = {};
     let artist1 = $('#firstGenre').val();
-    if(artist1 !== "") artists.artist1 = artist1;
+    if (artist1 !== "") artists.artist1 = artist1;
     let artist2 = $('#secondGenre').val();
-    if(artist2 !== "") artists.artist2 = artist2;
+    if (artist2 !== "") artists.artist2 = artist2;
     let artist3 = $('#thirdGenre').val();
-    if(artist3 !== "") artists.artist3 = artist3;
-    if(jQuery.isEmptyObject(artists)){
+    if (artist3 !== "") artists.artist3 = artist3;
+    if (jQuery.isEmptyObject(artists)) {
         alert("Please enter at least 1 artist.");
         return;
     }
-    alert(JSON.stringify(artists));
     $.ajax({
         url: '/searchArtist',
         dataType: 'json',
         type: 'POST',
         data: JSON.stringify(artists),
         contentType: "application/json",
-        success: function (data) {
-            console.log(JSON.stringify(data));
+        success: (data) => {
+            let path = data.dataArray;
+            let myContainer = document.getElementById('myContainer');
+            for (let key in path) {
+                if (path.hasOwnProperty(key)) {
+                    let albumPath = path[key].body.tracks.items;
+                    for (let albums in albumPath) {
+                        if (albumPath.hasOwnProperty(albums)) {
+                            console.log(albumPath[albums]);
+                            if (albumPath[albums].preview_url !== null) {
+                                let button = document.createElement("BUTTON");
+                                let text = document.createTextNode(albumPath[albums].name);
+                                button.appendChild(text);
+                                myContainer.appendChild(button);
+                                button.onclick = () => {
+                                    let audio = new Audio(albumPath[albums].preview_url);
+                                    audio.play();
+                                };
+                            }
+
+                        }
+                    }
+                }
+            }
         },
-        error: function (err) {
+        error: (err) => {
             console.log(err);
         }
     });

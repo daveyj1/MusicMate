@@ -5,16 +5,20 @@ let request = require('request');
 let SpotifyWebApi = require('spotify-web-api-node');
 let client_id = '9e91dbd172c24b608a18276182a66308';
 let client_secret = '150e886419e04d43ad8fd06225d0a56d';
+
 let spotifyApi = new SpotifyWebApi({
     clientId: client_id,
     clientSecret: client_secret,
     redirectUri: 'http://localhost:8000/'
 });
+
 let app = express();
+
 app.use("/css", express.static(__dirname + '/static/css'));
 app.use("/js", express.static(__dirname + '/static/js'));
 app.use(cors());
 app.use(bodyParser.json());
+
 app.get('/', (req, res) => {
     let payload = client_id + ":" + client_secret;
     let encodedPayload = new Buffer(payload).toString("base64");
@@ -27,7 +31,7 @@ app.get('/', (req, res) => {
         },
         body: "grant_type=client_credentials&scope=playlist-modify-public playlist-modify-private"
     };
-    request(opts, function (err, res, body) {
+    request(opts, (err, res, body) => {
         if (err) {
             console.log(err);
         }
@@ -47,16 +51,17 @@ app.post('/searchArtist', (request, response) => {
     let count = Object.keys(artistsObject).length;
     for (let key in artistsObject) {
         if (artistsObject.hasOwnProperty(key))
-            spotifyApi.searchArtists(artistsObject[key])
-                .then(function (data) {
+            spotifyApi.searchTracks('artist:' + artistsObject[key])
+                .then((data) => {
                     dataArray.push(data);
                     count--;
+
                     if (count <= 0 && !errorFlag) {
                         return response.status(200).json({
                             dataArray
                         });
                     }
-                }, function (err) {
+                },(err) => {
                     errorFlag = true;
                     return response.status(400).json({
                         message: err
@@ -64,6 +69,14 @@ app.post('/searchArtist', (request, response) => {
                 });
     }
 });
+// app.post('/searchAlbums', (request, response) => {
+//     let ids = request.body;
+//     console.log(ids);
+//     spotifyApi.searchTracks('artist:lil wayne')
+//         .then((data) => {
+//             return response.status(200).json(data);
+//         });
+// });
 
 app.set('port', (process.env.PORT || 8000));
 app.listen(app.get('port'));
