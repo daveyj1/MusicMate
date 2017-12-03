@@ -19,12 +19,18 @@ let currentAudio;
     const btnLogin = document.getElementById('btnLogin');
     const btnSignUp = document.getElementById('btnSignUp');
 
-    btnLogin.addEventListener('ckick', e => {
+    btnLogin.addEventListener('click', e => {
         const email = txtEmail.value;
         const pass = txtPassword.value;
         const auth = firebase.auth();
         const promise = auth.singInWithEmailAndPassword(email, pass);
         promise.catch(e => console.log(e.message));
+        if (promise) {
+            window.location.href = "index.html";
+        }
+        else {
+            alert("incorrect username or password");
+        }
     });
 
     btnSignUp.addEventListener('click', e => {
@@ -33,6 +39,13 @@ let currentAudio;
         const auth = firebase.auth();
         const promise = auth.createWithEmailAndPassword(email, pass);
         promise.catch(e => console.log(e.message));
+        if (promise) {
+            window.location.href = "index.html";
+        }
+        else {
+            alert("incorrect username or password");
+        }
+
     });
 
     btnLogout.addEventListener('click', e => {
