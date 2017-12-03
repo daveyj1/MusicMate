@@ -8,6 +8,24 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
+    <!--<script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>-->
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCnkvNIBIlO1PqPqnoK2eAoejUXt84I40c",
+            authDomain: "musicmatch-fda17.firebaseapp.com",
+            databaseURL: "https://musicmatch-fda17.firebaseio.com",
+            projectId: "musicmatch-fda17",
+            storageBucket: "musicmatch-fda17.appspot.com",
+            messagingSenderId: "840617963782"
+        };
+        firebase.initializeApp(config);
+    </script>
     <link rel="stylesheet" href="css/stylesheet.css">
     <title>MusicMatch</title>
 </head>
@@ -15,12 +33,16 @@
 <div class="container">
     <h1 class="welcome text-center">Welcome to MusicMatch!</h1>
     <div class="card card-container">
-        <h2 class='artist_title text-center'>Enter Three Artists</h2>
+        <h5 class='artist_title text-center'>Enter Three Artists</h5>
         <hr>
         <form class="artist_form">
             <input type="text" id="firstGenre" class="artist_box" placeholder="e.g. Rock, Hip Hop" required autofocus>
             <input type="text" id="secondGenre" class="artist_box" required>
             <input type="text" id="thirdGenre" class="artist_box"  required>
+            <h5 class='artist_title text-center'>Enter a Name for the Playlist</h5>
+            <hr>
+            <input type="text" id="playlistBox" class="artist_box" required>
+            <hr>
             <button class="btn btn-lg btn-primary" type="button" onclick="getArtists()">Create Playlist</button>
         </form>
     </div>

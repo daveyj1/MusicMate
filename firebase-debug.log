@@ -1,0 +1,43 @@
+[debug] [2017-12-03T00:23:04.211Z] ----------------------------------------------------------------------
+[debug] [2017-12-03T00:23:04.212Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2017-12-03T00:23:04.213Z] CLI Version:   3.15.4
+[debug] [2017-12-03T00:23:04.213Z] Platform:      darwin
+[debug] [2017-12-03T00:23:04.213Z] Node Version:  v9.1.0
+[debug] [2017-12-03T00:23:04.213Z] Time:          Sat Dec 02 2017 19:23:04 GMT-0500 (EST)
+[debug] [2017-12-03T00:23:04.213Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-03T00:23:04.225Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-03T00:23:04.225Z] > authorizing via signed-in user
+[debug] [2017-12-03T00:23:04.226Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-03T00:23:04.226Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/A6qxjJQomZ9t24SepCN9vTYa0xM1aj0AESk1ranmHUAGwCDDs30aDtaAjU9QmJL7',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Dec 02 2017 19:23:04 GMT-0500 (EST)
+[debug] [2017-12-03T00:23:04.621Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-03T00:23:04.627Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/musicmatch-fda17  
+ Sat Dec 02 2017 19:23:04 GMT-0500 (EST)
+[debug] [2017-12-03T00:23:05.886Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-03T00:23:05.888Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/musicmatch-fda17/tokens  
+ Sat Dec 02 2017 19:23:05 GMT-0500 (EST)
+[debug] [2017-12-03T00:23:06.317Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/jacksondidat/Documents/CS_stuff/cs252/lab6-src/MusicMate'...
+[info] 
+[debug] [2017-12-03T00:23:06.322Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/musicmatch-fda17  
+ Sat Dec 02 2017 19:23:06 GMT-0500 (EST)
+[debug] [2017-12-03T00:23:06.525Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-03T00:23:06.525Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/840617963782/clients/_:getWebAppConfig  
+ Sat Dec 02 2017 19:23:06 GMT-0500 (EST)
+[debug] [2017-12-03T00:23:06.943Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-03T00:23:06.968Z] TypeError: Cannot read property 'public' of undefined
+    at Server.<anonymous> (/usr/local/lib/node_modules/firebase-tools/lib/serve/hosting.js:34:18)
+    at Object.onceWrapper (events.js:322:30)
+    at emitNone (events.js:115:13)
+    at Server.emit (events.js:218:7)
+    at emitListeningNT (net.js:1394:10)
+    at _combinedTickCallback (internal/process/next_tick.js:135:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:218:9)
+[error] 
+[error] Error: An unexpected error has occurred.

@@ -24,6 +24,7 @@ function getArtists() {
             let path = data.dataArray;
             let myContainer = document.getElementById('myContainer');
             myContainer.innerHTML = '';
+            let songArray = [];
             for (let key in path) {
                 if (path.hasOwnProperty(key)) {
                     let albumPath = path[key].body.tracks.items;
@@ -33,6 +34,7 @@ function getArtists() {
                             if (albumPath[albums].preview_url !== null) {
                                 let button = document.createElement("BUTTON");
                                 let text = document.createTextNode(albumPath[albums].name);
+                                songArray.push(albumPath[albums].name);
                                 button.appendChild(text);
                                 button.onclick = () => {
                                     if(currentlyPlaying){
@@ -54,7 +56,18 @@ function getArtists() {
         error: (err) => {
             console.log(err);
         }
-    }).done(()=>{
+    }).done((songArray)=>{
         spinner.hide();
+        makePlaylist(songArray);
     });
+}
+
+function makePlaylist(array) {
+    $.ajax({
+        url: '',
+        dataType: 'json',
+        type: 'POST',
+        contentType: "application/json",
+
+    })
 }
