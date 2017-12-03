@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
         }
     });
 
-    res.sendfile('./static/index.html');
+    res.sendfile('./static/sign_in.html');
 });
 
 app.post('/searchArtist', (request, response) => {
