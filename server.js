@@ -1,4 +1,4 @@
-let express = require('express');
+let express = require('express')
 let bodyParser = require('body-parser');
 let cors = require('cors');
 let request = require('request');
@@ -52,7 +52,7 @@ app.post('/searchArtist', (request, response) => {
     let count = Object.keys(artistsObject).length;
     for (let key in artistsObject) {
         if (artistsObject.hasOwnProperty(key))
-            spotifyApi.searchTracks('artist:' + artistsObject[key],{limit: 20})
+            spotifyApi.searchTracks('artist:' + artistsObject[key],{limit: 50})
                 .then((data) => {
                     dataArray.push(data);
                     count--;
@@ -69,5 +69,5 @@ app.post('/searchArtist', (request, response) => {
                 });
     }
 });
-app.set('port', (process.env.PORT || 8001));
+app.set('port', (process.env.PORT || 8005));
 app.listen(app.get('port'));
