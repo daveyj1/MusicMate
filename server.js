@@ -55,7 +55,6 @@ app.post('/searchArtist', (request, response) => {
                 .then((data) => {
                     dataArray.push(data);
                     count--;
-
                     if (count <= 0 && !errorFlag) {
                         return response.status(200).json({
                             dataArray

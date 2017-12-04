@@ -12,34 +12,23 @@ function loadUp() {
     btnLogin.addEventListener('click', e => {
         const email = txtEmail.value;
         const pass = txtPassword.value;
-        const auth = firebase.auth();
-        const promise = auth.singInWithEmailAndPassword(email, pass);
-        promise.then((user) => {
-            alert("SUCCESS");
-        }).catch(e => console.log(e.message));
-        if (promise) {
-            window.location.href = "index.html";
-        }
-        else {
-            alert("incorrect username or password");
-        }
+        firebase.auth.singInWithEmailAndPassword(email, pass).catch(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert(errorCode + " " + errorMessage + "\n Incorrect username or password, plz try again");
+        });
+        window.location.href = "index.html";
     });
 
     btnSignUp.addEventListener('click', e => {
         const email = txtEmail.value;
         const pass = txtPassword.value;
-        const auth = firebase.auth();
-        const promise = auth.createWithEmailAndPassword(email, pass);
-        promise.then((user) => {
-            alert("SUCCESS");
-        }).catch(e => console.log(e.message));
-        if (promise) {
-            window.location.href = "index.html";
-        }
-        else {
-            alert("incorrect username or password");
-        }
-
+        firebase.auth().createWithEmailAndPassword(email, pass).catch(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            alert(errorCode + " " + errorMessage + "\n Failed to create account, plz try again");
+        });
+        window.location.href = "index.html";
     });
 
     btnLogout.addEventListener('click', e => {
