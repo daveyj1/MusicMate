@@ -1,18 +1,8 @@
 let currentlyPlaying = false;
 let currentAudio;
 
-(function() {
+function loadUp() {
     //initializes firebase
-    var config = {
-        apiKey: "AIzaSyCnkvNIBIlO1PqPqnoK2eAoejUXt84I40c",
-        authDomain: "musicmatch-fda17.firebaseapp.com",
-        databaseURL: "https://musicmatch-fda17.firebaseio.com",
-        projectId: "musicmatch-fda17",
-        storageBucket: "musicmatch-fda17.appspot.com",
-        messagingSenderId: "840617963782"
-    };
-
-    firebase.initializeApp(config);
 
     const txtEmail = document.getElementById('txtEmail');
     const txtPassword = document.getElementById('txtPassword');
@@ -24,7 +14,9 @@ let currentAudio;
         const pass = txtPassword.value;
         const auth = firebase.auth();
         const promise = auth.singInWithEmailAndPassword(email, pass);
-        promise.catch(e => console.log(e.message));
+        promise.then((user) => {
+            alert("SUCCESS");
+        }).catch(e => console.log(e.message));
         if (promise) {
             window.location.href = "index.html";
         }
@@ -38,7 +30,9 @@ let currentAudio;
         const pass = txtPassword.value;
         const auth = firebase.auth();
         const promise = auth.createWithEmailAndPassword(email, pass);
-        promise.catch(e => console.log(e.message));
+        promise.then((user) => {
+            alert("SUCCESS");
+        }).catch(e => console.log(e.message));
         if (promise) {
             window.location.href = "index.html";
         }
@@ -62,7 +56,7 @@ let currentAudio;
        }
     });
 
-}());
+};
 
 function getArtists() {
     let artists = {};

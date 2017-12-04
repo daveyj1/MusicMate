@@ -7,20 +7,39 @@
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="js/index.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+  <script>
+      var config = {
+          apiKey: "AIzaSyCnkvNIBIlO1PqPqnoK2eAoejUXt84I40c",
+          authDomain: "musicmatch-fda17.firebaseapp.com",
+          databaseURL: "https://musicmatch-fda17.firebaseio.com",
+          projectId: "musicmatch-fda17",
+          storageBucket: "musicmatch-fda17.appspot.com",
+          messagingSenderId: "840617963782"
+      };
+      firebase.initializeApp(config);
+      let uiConfig = {
+          signInSuccessUrl: 'index.html'
+      };
+      let ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#auth-container', uiConfig);
+  </script>
+  <script src="js/index.js"></script>
   <title>MusicMatch</title>
   <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 <style>
 </style>
 <body class="bg">
-<div class="container">
+<div class="container" id="auth-container">
   <h1 class="welcome text-center">Welcome to MusicMatch!</h1>
   <div class="card card-container">
     <h5 class='artist_title text-center'>Please Login or Sign Up</h5>
