@@ -40,10 +40,11 @@ app.get('/', (req, res) => {
             spotifyApi.setAccessToken(JSON.parse(body).access_token);
         }
     });
-
-    res.sendfile('./static/sign_in.html');
+    res.sendfile(__dirname + "/static/sign_in.html");
 });
-
+app.get('/index', (request, response) => {
+    return response.sendfile(__dirname + "/static/index.html");
+});
 app.post('/searchArtist', (request, response) => {
     let errorFlag = false;
     let dataArray = [];
@@ -68,5 +69,5 @@ app.post('/searchArtist', (request, response) => {
                 });
     }
 });
-app.set('port', (process.env.PORT || 8000));
+app.set('port', (process.env.PORT || 8001));
 app.listen(app.get('port'));

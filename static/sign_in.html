@@ -1,39 +1,4 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<html>
-<head>
-  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
-  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-  <!--<script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>-->
-  <!--<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />-->
-  <script src="js/index.js"></script>
-  <title>MusicMatch</title>
-  <link rel="stylesheet" href="css/stylesheet.css">
-</head>
-<style>
-</style>
-<body class="bg">
-<div class="container" id="auth-container">
-  <h1 class="welcome text-center">Welcome to MusicMatch!</h1>
-  <div class="card card-container">
-    <h5 class='artist_title text-center'>Please Login or Sign Up</h5>
-    <hr>
-    <form class="artist_form">
-      <input type="text" id="txtEmail" class="artist_box" placeholder="Email" required autofocus>
-      <input type="text" id="txtPassword" class="artist_box" placeholder="Password" required autofocus>
-      <button id="btnLogin" class="btn btn-lg btn-primary" type="button">Login</button>
-      <button id="btnSignUp" class="btn btn-lg btn-primary" type="button">Sign Up</button>
-      <button id="btnSignOut" style="display: none" class="btn btn-lg btn-primary" type="button">Sign Out</button>
-    </form>
-  </div>
-</div>
-<div class="loader" id="spinner"></div>
-<div class="container" id="myContainer">
-</div>
-<script src="index.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
@@ -52,5 +17,43 @@
     };
     firebase.initializeApp(config);
 </script>
+<script src="js/index.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+      integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+<html>
+<head>
+    <title>MusicMatch</title>
+    <link rel="stylesheet" href="css/stylesheet.css">
+</head>
+<style>
+</style>
+<body class="bg">
+<div class="container" id="auth-container">
+    <h1 class="welcome text-center">Welcome to MusicMatch!</h1>
+    <div class="card card-container">
+        <h5 class='artist_title text-center'>Please Login or Sign Up</h5>
+        <hr>
+        <form class="artist_form">
+            <input type="text" id="txtEmail" class="artist_box" placeholder="Email" required autofocus>
+            <input type="text" id="txtPassword" class="artist_box" placeholder="Password" required autofocus>
+            <button id="btnLogin" class="btn btn-lg btn-primary" type="button" onclick="logIn()">Login</button>
+            <button id="btnSignUp" class="btn btn-lg btn-primary" type="button" onclick="signUp()">Sign Up</button>
+            <button id="btnSignOut" style="display: none" class="btn btn-lg btn-primary" type="button">Sign Out</button>
+        </form>
+    </div>
+</div>
+<div class="loader" id="spinner"></div>
+<div class="container" id="myContainer">
+</div>
+
 </body>
 </html>
