@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script src="js/index.js"></script>
+<script src="https://apis.google.com/js/client.js?onLoad=init"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
@@ -11,6 +13,10 @@
         padding: 1px;
         height: 1px;
         width: 150px;
+    }
+    iframe {
+        position: absolute;
+        top:0;
     }
 </style>
 <head>
@@ -31,16 +37,6 @@
         <h5 class='artist_title text-center'>Hi, User!</h5>
         <hr>
         <h5 class='artist_title text-left'>Your Playlists:
-        <!--<form class="artist_form">-->
-            <!--<input type="text" id="firstGenre2" class="artist_box" placeholder="e.g. Björk, Kanye West" required autofocus>-->
-            <!--<input type="text" id="secondGenre2" class="artist_box" required>-->
-            <!--<input type="text" id="thirdGenre2" class="artist_box"  required>-->
-            <!--<h5 class='artist_title text-center'>Enter a Name for the Playlist</h5>-->
-            <!--<hr>-->
-            <!--<input type="text" id="playlistBox2" class="artist_box" required>-->
-            <!--<hr>-->
-            <!--<button class="btn btn-lg btn-primary" type="button" onclick="getArtists()">Create Playlist</button>-->
-        <!--</form>-->
         <div id="btnwlines" class="dropdown">
             <button onclick="myFunction()" class="dropbtn">
                 <hr>
@@ -73,6 +69,49 @@
             <button class="btn btn-lg btn-primary" type="button" onclick="getArtists()">Create Playlist</button>
         </form>
     </div>
+<div id="player"></div>
+
+<script>
+    // 2. This code loads the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // 3. This function creates an <iframe> (and YouTube player)
+    //    after the API code downloads.
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            height: '720',
+            width: '1280',
+            videoId: 'XaThSxBoD9M',
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    // 4. The API will call this function when the video player is ready.
+    function onPlayerReady(event) {
+        event.target.playVideo();
+    }
+
+    // 5. The API calls this function when the player's state changes.
+    //    The function indicates that when playing a video (state=1),
+    //    the player should play for six seconds and then stop.
+    var done = false;
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING && !done) {
+            done = true;
+        }
+    }
+    function stopVideo() {
+        player.stopVideo();
+    }
+</script>
 </div>
 <div class="loader" id="spinner"></div>
 <div class="container" id="myContainer">

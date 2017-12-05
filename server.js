@@ -69,5 +69,34 @@ app.post('/searchArtist', (request, response) => {
                 });
     }
 });
-app.set('port', (process.env.PORT || 8003));
+
+// (function() {
+//     $("form").on("submit", function(e) {
+//         e.preventDefault();
+//         // prepare the request
+//         var request = gapi.client.youtube.search.list({
+//             part: "snippet",
+//             type: "video",
+//             q: encodeURIComponent$("#search").val().replace(/%20/g, "+"),
+//             maxResults: 3,
+//             order: "viewCount",
+//             publishedAfter: "2015-01-01T00:00:00Z"
+//         });
+//         request.execute(function(response) {
+//             var results = response.result;
+//             $.each(results.items, function(index, item) {
+//                 // $("#results").append(item.id.videoId + "." + item.snippet.title+"<br>")
+//             });
+//         });
+//     });
+// });
+
+function init() {
+    gapi.client.setApiKey("AIzaSyCnkvNIBIlO1PqPqnoK2eAoejUXt84I40c")
+    gapi.client.load("youtube", "v3", function() {
+        // yt api is ready
+    });
+}
+
+app.set('port', (process.env.PORT || 8100));
 app.listen(app.get('port'));

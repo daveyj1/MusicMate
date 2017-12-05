@@ -77,15 +77,11 @@ function getArtists() {
                         if (albumPath.hasOwnProperty(albums)) {
                             let artistName = albumPath[albums].album.artists[0].name;
                             let songName = albumPath[albums].name;
-                            console.log(artistName + songName);
-                            songArray.push(artistName + songName);
+                            console.log(artistName + " " + songName);
+                            songArray.push(artistName + " " + songName);
                             if (albumPath[albums].preview_url !== null) {
                                 let button = document.createElement("BUTTON");
                                 let text = document.createTextNode(albumPath[albums].name);
-                                // let artistName = albumPath[albums].album.artists[0].name;
-                                // let songName = albumPath[albums].name;
-                                // console.log(artistName + " - " + songName);
-                                // songArray.push(artistName + " - " + songName);
                                 button.appendChild(text);
                                 button.onclick = () => {
                                     if(currentlyPlaying){
