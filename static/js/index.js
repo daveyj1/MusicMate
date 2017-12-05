@@ -1,5 +1,6 @@
 let currentlyPlaying = false;
 let currentAudio;
+var songArray = [];
 
 function logIn() {
     const txtEmail = document.getElementById('txtEmail');
@@ -33,7 +34,6 @@ function myFunction() {
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
-
         var dropdowns = document.getElementsByClassName("dropdown-content");
         var i;
         for (i = 0; i < dropdowns.length; i++) {
@@ -75,11 +75,17 @@ function getArtists() {
                     let albumPath = path[key].body.tracks.items;
                     for (let albums in albumPath) {
                         if (albumPath.hasOwnProperty(albums)) {
-                            console.log(albumPath[albums]);
+                            let artistName = albumPath[albums].album.artists[0].name;
+                            let songName = albumPath[albums].name;
+                            console.log(artistName + songName);
+                            songArray.push(artistName + songName);
                             if (albumPath[albums].preview_url !== null) {
                                 let button = document.createElement("BUTTON");
                                 let text = document.createTextNode(albumPath[albums].name);
-                                songArray.push(albumPath[albums].name);
+                                // let artistName = albumPath[albums].album.artists[0].name;
+                                // let songName = albumPath[albums].name;
+                                // console.log(artistName + " - " + songName);
+                                // songArray.push(artistName + " - " + songName);
                                 button.appendChild(text);
                                 button.onclick = () => {
                                     if(currentlyPlaying){
@@ -107,12 +113,11 @@ function getArtists() {
     });
 }
 
-function makePlaylist(array) {
-    $.ajax({
-        url: '',
-        dataType: 'json',
-        type: 'POST',
-        contentType: "application/json",
-
-    })
+function makePlaylist(songArray) {
+    {
+    //     "Playlist":[
+    //     {"artistName":"Kanye West", "Song":"Power", "URL":"https://www.youtube.com/watch?v=nfef5WqC85A"},
+    //     {"artistName":"David Bowie", "Song":"Life on Mars?", "URL":"https://www.youtube.com/watch?v=v--IqqusnNQ"},
+    // ]
+    }
 }

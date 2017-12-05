@@ -5,6 +5,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <html>
+<style>
+    hr {
+        margin: auto;
+        padding: 1px;
+        height: 1px;
+        width: 150px;
+    }
+</style>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
@@ -22,7 +30,7 @@
     <div class="left-card card-container">
         <h5 class='artist_title text-center'>Hi, User!</h5>
         <hr>
-        <h5 class='artist_title text-left'>Your Playlists: </h5>
+        <h5 class='artist_title text-left'>Your Playlists:
         <!--<form class="artist_form">-->
             <!--<input type="text" id="firstGenre2" class="artist_box" placeholder="e.g. Björk, Kanye West" required autofocus>-->
             <!--<input type="text" id="secondGenre2" class="artist_box" required>-->
@@ -33,14 +41,23 @@
             <!--<hr>-->
             <!--<button class="btn btn-lg btn-primary" type="button" onclick="getArtists()">Create Playlist</button>-->
         <!--</form>-->
-        <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <div id="btnwlines" class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">
+                <hr>
+                <hr>
+                <hr>
+            </button>
             <div id="myDropdown" class="dropdown-content">
                 <a href="#">Link 1</a>
                 <a href="#">Link 2</a>
                 <a href="#">Link 3</a>
+                <a href="#">Link 4</a>
+                <a href="#">Link 5</a>
             </div>
         </div>
+        </h5>
+    </div>
+    </div>
     </div>
     <div class="card card-container">
         <h5 class='artist_title text-center'>Enter Three Artists</h5>
