@@ -121,13 +121,12 @@ function getArtists() {
             shuffleArray(songArray);
             arrayLength = songArray.length;
             console.log(arrayLength);
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 15; i++) {
                 var x = Math.floor(Math.random() * arrayLength);
-                console.log(x);
                 randoSongs.push(songArray[x]);
             }
             console.log(randoSongs);
-            createPlaylist(songArray);
+            createPlaylist(randoSongs);
         },
         error: (err) => {
             console.log(err);
@@ -135,11 +134,9 @@ function getArtists() {
     }).done(()=>{
         spinner.hide();
     });
-    showDiv();
 }
 
 function createPlaylist(songArray) {
-    var playlist = {};
     let p = $('#playlistName').val();
     playlist["playlistName"] = p;
     document.getElementById('pName').innerHTML = "Playlist: " + p;
@@ -157,6 +154,7 @@ function createPlaylist(songArray) {
                 let thing = this.response.indexOf("videoId") + 11;
                 let thing2 = this.response.indexOf("snippet") - 7;
                 vidID = this.response.substring(thing, thing2);
+                console.log(vidID)
             }
         };
         //p["vidID"][i] = vidID;
@@ -164,11 +162,14 @@ function createPlaylist(songArray) {
         x.setRequestHeader("Content-type", "application/json");
         x.send()
     }
-    console.log(playlist);
+    showDiv(songArray);
 }
 
-function showDiv() {
+function showDiv(songArray) {
     document.getElementById('playlist').style.display = "block";
+    for (var i = 0; i < songArray.length; i++) {
+        document.getElementById('playlistNames').innerHTML = songArray[i] + '\n'
+    }
 }
 
 function shuffleArray(songArray) {
