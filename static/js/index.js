@@ -98,7 +98,6 @@ function getArtists() {
                             let songName = albumPath[albums].name;
                             //console.log(artistName + " " + songName);
                             songArray.push(artistName + "+" + songName);
-                            count++;
                             if (albumPath[albums].preview_url !== null) {
                                 let button = document.createElement("BUTTON");
                                 let text = document.createTextNode(albumPath[albums].name);
@@ -118,21 +117,6 @@ function getArtists() {
                         }
                     }
                 }
-                // let i = 0;
-                // if (flag == 2) {
-                //    i = 18;
-                // }
-                // else if (flag == 1) {
-                //     i = 9;
-                // }
-                // else {
-                //     i = 6;
-                // }
-                // for (let i = 0; i < 5; i++) {
-                //     var x = Math.floor(Math.random() * songArray.length);
-                //     randoSongs.push(songArray[x])
-                // }
-                // console.log(randoSongs);
             }
             createPlaylist(songArray);
             arrayLength = songArray.length;
@@ -149,6 +133,7 @@ function getArtists() {
         console.log(x);
         randoSongs.push(songArray[x]);
     }
+    console.log(randoSongs);
     showDiv();
 }
 
