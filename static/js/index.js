@@ -170,6 +170,7 @@ function createPlaylist(songArray) {
 }
 
 function showDiv(songArray, vidIDArray) {
+    console.log(finalArray);
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
     //document.getElementById('playlistArtists').innerHTML = "";
