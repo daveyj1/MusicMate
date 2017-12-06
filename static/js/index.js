@@ -10,6 +10,7 @@ function logIn() {
     const pass = txtPassword.value;
     firebase.auth().signInWithEmailAndPassword(email, pass).then(function (user) {
         window.location.href = "index";
+        document.getElementById('profile').innerHTML = "Hi, " + txtEmail.substring(0, txtEmail.indexOf('@'));
     }).catch(function(error) {
         alert(error.message);
     });
@@ -21,6 +22,7 @@ function signUp() {
     const pass = txtPassword.value;
     firebase.auth().createUserWithEmailAndPassword(email, pass).then(function (user) {
         window.location.href = "index";
+        document.getElementById('profile').innerHTML = "Hi, " + txtEmail.substring(0, txtEmail.indexOf('@'));
     }).catch(function(error) {
         alert(error.message);
     });
@@ -140,12 +142,12 @@ function getArtists() {
     }).done(()=>{
         spinner.hide();
     });
-    console.log(count);
+    // console.log(count);
+    console.log(songArray.length);
     for (let i = 0; i < 10; i++) {
         var x = Math.floor(Math.random() * count);
         console.log(x);
         randoSongs.push(songArray[x]);
-        console.log(songArray[x])
     }
     //console.log(randoSongs);
     showDiv();
