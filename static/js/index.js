@@ -122,6 +122,10 @@ function getArtists() {
             console.log(arrayLength);
             for (let i = 0; i < 15; i++) {
                 var x = Math.floor(Math.random() * arrayLength);
+                if (i != 0 && randoSongs.contains(songArray[x])) {
+                    i--;
+                    continue;
+                }
                 randoSongs.push(songArray[x]);
             }
             console.log(randoSongs);
@@ -140,8 +144,6 @@ function createPlaylist(songArray) {
     let p = $('#playlistName').val();
     playlist["playlistName"] = p;
     document.getElementById('pName').innerHTML = "Playlist: " + p;
-    let song = songArray[0].substring(songArray[0].indexOf("+") + 1, songArray[0].length);
-    let artist = songArray[0].substring(0, songArray[0].indexOf("+"));
     for (var i = 0; i < songArray.length; i++) {
         var x = new XMLHttpRequest();
         var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + songArray[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4";
@@ -155,7 +157,6 @@ function createPlaylist(songArray) {
                 vidIDArray.push(vidID);
             }
         };
-        //p["vidID"][i] = vidID;
         x.open("GET", request, true);
         x.setRequestHeader("Content-type", "application/json");
         x.send()
