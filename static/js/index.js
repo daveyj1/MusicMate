@@ -171,7 +171,7 @@ function createPlaylist(songArray) {
 function showDiv(songArray) {
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
-    document.getElementById('playlistArtists').innerHTML = "";
+    //document.getElementById('playlistArtists').innerHTML = "";
     for (var i = 0; i < 15; i++) {
         let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
         let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
