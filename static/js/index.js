@@ -2,6 +2,7 @@ let currentlyPlaying = false;
 let currentAudio;
 var songArray = [];
 
+
 function logIn() {
     const txtEmail = document.getElementById('txtEmail');
     const txtPassword = document.getElementById('txtPassword');
@@ -43,7 +44,7 @@ window.onclick = function(event) {
             }
         }
     }
-}
+};
 
 function getArtists() {
     let artists = {};
@@ -78,7 +79,7 @@ function getArtists() {
                             let artistName = albumPath[albums].album.artists[0].name;
                             let songName = albumPath[albums].name;
                             console.log(artistName + " " + songName);
-                            songArray.push(artistName + " " + songName);
+                            songArray.push(artistName + "+" + songName);
                             if (albumPath[albums].preview_url !== null) {
                                 let button = document.createElement("BUTTON");
                                 let text = document.createTextNode(albumPath[albums].name);
@@ -109,11 +110,61 @@ function getArtists() {
     });
 }
 
-function makePlaylist(songArray) {
-    {
-    //     "Playlist":[
-    //     {"artistName":"Kanye West", "Song":"Power", "URL":"https://www.youtube.com/watch?v=nfef5WqC85A"},
-    //     {"artistName":"David Bowie", "Song":"Life on Mars?", "URL":"https://www.youtube.com/watch?v=v--IqqusnNQ"},
-    // ]
-    }
+function init() {
+    gapi.client.setApiKey("AIzaSyCnkvNIBIlO1PqPqnoK2eAoejUXt84I40c")
+    gapi.client.load("youtube", "v3", function() {
+        // yt api is ready
+    });
 }
+
+function getSongURL(songArray) {
+    init();
+    for(var i = 0; i < songArray.length(); i++) {
+        let searchURL = "https://www.youtube.com/results?search_query=" + songArray[i];
+    }
+
+}
+
+function hello() {
+
+    var x = new XMLHttpRequest()
+    var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + document.getElementById("query").value + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4"
+
+    x.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var string = this.response
+            var obj = string.substring(string.indexOf("items") + 7, string.length - 2)
+            var results_array = JSON.parse(obj)
+            //alert(JSON.stringify(results_array[0]))
+            for (i = 0; i < results_array.length; i++) {
+                var row = document.createElement("div")
+                var title = document.createElement("div")
+
+                var result = JSON.stringify(results_array[i])
+                var temp = result
+                var asdf = temp.substring(temp.indexOf("title") + 8, temp.indexOf("description") - 3)
+                alert(asdf)
+                title.innerHTML = result.substring(result.indexOf("title"), result.indexOf("thumbnails") - 7)
+                row.appendChild(title)
+                divFriendsList.appendChild(row)
+            }
+
+        }
+        else {
+            console.log("didnt go through")
+        }
+    }
+
+    x.open("GET", request, true)
+    x.setRequestHeader("Content-type", "application/json")
+    x.send()
+
+}
+
+// function init() {
+// gapi.client.setApiKey("AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4")
+// gapi.client.load("youtube", "v3", function() {
+// // api is ready
+// })
+// }
+

@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="css/stylesheet.css">
     <title>MusicMatch</title>
 </head>
-<body class="bg">
+<body onLoad="init()" class="bg">
 <div class="container">
     <h1 class="welcome text-center">Welcome to MusicMatch!</h1>
     <div class="left-card card-container">
@@ -62,15 +62,15 @@
             <input type="text" id="firstGenre" class="artist_box" placeholder="e.g. Björk, Kanye West" required autofocus>
             <input type="text" id="secondGenre" class="artist_box" required>
             <input type="text" id="thirdGenre" class="artist_box"  required>
-            <h5 class='artist_title text-center'>Enter a Name for the Playlist</h5>
+            <h5 class='artist_title text-center'>Search for a vid my d00d</h5>
             <hr>
             <input type="text" id="playlistBox" class="artist_box" required>
             <hr>
             <button class="btn btn-lg btn-primary" type="button" onclick="getArtists()">Create Playlist</button>
+            <div id="results"></div>
         </form>
     </div>
 <div id="player"></div>
-
 <script>
     // 2. This code loads the IFrame Player API code asynchronously.
     var tag = document.createElement('script');
@@ -84,8 +84,8 @@
     var player;
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-            height: '720',
-            width: '1280',
+            height: '480',
+            width: '720',
             videoId: 'PMZZUyos1kI',
             events: {
                 'onReady': onPlayerReady,
