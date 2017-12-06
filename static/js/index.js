@@ -139,8 +139,8 @@ function createPlaylist(songArray) {
     let p = $('#playlistName').val();
     playlist["playlistName"] = p;
     document.getElementById('pName').innerHTML = "Playlist: " + p;
-    let song = songArray[0].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
-    let artist = songArray[0].substring(0, songArray[i].indexOf("+"));
+    let song = songArray[0].substring(songArray[0].indexOf("+") + 1, songArray[0].length);
+    let artist = songArray[0].substring(0, songArray[0].indexOf("+"));
     for (var i = 0; i < songArray.length; i++) {
         let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
         let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
