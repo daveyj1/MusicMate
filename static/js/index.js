@@ -49,7 +49,7 @@ window.onclick = function(event) {
 };
 
 function getArtists() {
-    let arrayLength = 0;
+    let arrayLength = "";
     let flag = 0;
     let artists = {};
     let artist1 = $('#firstGenre').val();
@@ -118,8 +118,16 @@ function getArtists() {
                     }
                 }
             }
-            createPlaylist(songArray);
+            shuffleArray(songArray);
             arrayLength = songArray.length;
+            console.log(arrayLength);
+            for (let i = 0; i < 10; i++) {
+                var x = Math.floor(Math.random() * arrayLength);
+                console.log(x);
+                randoSongs.push(songArray[x]);
+            }
+            console.log(randoSongs);
+            createPlaylist(songArray);
         },
         error: (err) => {
             console.log(err);
@@ -127,13 +135,6 @@ function getArtists() {
     }).done(()=>{
         spinner.hide();
     });
-    console.log(arrayLength);
-    for (let i = 0; i < 10; i++) {
-        var x = Math.floor(Math.random() * arrayLength);
-        console.log(x);
-        randoSongs.push(songArray[x]);
-    }
-    console.log(randoSongs);
     showDiv();
 }
 
@@ -168,6 +169,15 @@ function createPlaylist(songArray) {
 
 function showDiv() {
     document.getElementById('playlist').style.display = "block";
+}
+
+function shuffleArray(songArray) {
+    for (var i = songArray.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        songArray[i] = songArray[j];
+        songArray[j] = temp;
+    }
 }
 
 
