@@ -1,7 +1,7 @@
 let currentlyPlaying = false;
 let currentAudio;
 var songArray = [];
-
+var randoSongs = [];
 
 function logIn() {
     const txtEmail = document.getElementById('txtEmail');
@@ -47,14 +47,29 @@ window.onclick = function(event) {
 };
 
 function getArtists() {
-
+    let flag = 0;
     let artists = {};
     let artist1 = $('#firstGenre').val();
-    if (artist1 !== "") artists.artist1 = artist1;
+    if (artist1 !== "") {
+        artists.artist1 = artist1;
+    }
+    else {
+        flag++;
+    }
     let artist2 = $('#secondGenre').val();
-    if (artist2 !== "") artists.artist2 = artist2;
+    if (artist2 !== "") {
+        artists.artist2 = artist2;
+    }
+    else {
+        flag++;
+    }
     let artist3 = $('#thirdGenre').val();
-    if (artist3 !== "") artists.artist3 = artist3;
+    if (artist3 !== "") {
+        artists.artist3 = artist3;
+    }
+    else {
+        flag++;
+    }
     if (jQuery.isEmptyObject(artists)) {
         alert("Please enter at least 1 artist.");
         return;
@@ -78,7 +93,7 @@ function getArtists() {
                         if (albumPath.hasOwnProperty(albums)) {
                             let artistName = albumPath[albums].album.artists[0].name;
                             let songName = albumPath[albums].name;
-                            console.log(artistName + " " + songName);
+                            //console.log(artistName + " " + songName);
                             songArray.push(artistName + "+" + songName);
                             if (albumPath[albums].preview_url !== null) {
                                 let button = document.createElement("BUTTON");
@@ -99,6 +114,21 @@ function getArtists() {
                         }
                     }
                 }
+                // let i = 0;
+                // if (flag == 2) {
+                //    i = 18;
+                // }
+                // else if (flag == 1) {
+                //     i = 9;
+                // }
+                // else {
+                //     i = 6;
+                // }
+                // for (let i = 0; i < 5; i++) {
+                //     var x = Math.floor(Math.random() * songArray.length);
+                //     randoSongs.push(songArray[x])
+                // }
+                // console.log(randoSongs);
             }
             createPlaylist(songArray)
         },
@@ -108,6 +138,11 @@ function getArtists() {
     }).done(()=>{
         spinner.hide();
     });
+    for (let i = 0; i < 10; i++) {
+        var x = Math.floor(Math.random() * songArray.length);
+        randoSongs.push(songArray[x])
+    }
+    console.log(randoSongs);
 }
 
 function createPlaylist(songArray) {
@@ -117,8 +152,8 @@ function createPlaylist(songArray) {
     for (var i = 0; i < songArray.length; i++) {
         let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
         let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
-        p["songName"][i] = song;
-        p["artistName"][i] = artist;
+        //p["songName"][i] = song;
+        //p["artistName"][i] = artist;
         console.log();
         var x = new XMLHttpRequest();
         var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + songArray[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4";
@@ -130,7 +165,7 @@ function createPlaylist(songArray) {
                 vidID = this.response.substring(thing, thing2);
             }
         };
-        p["vidID"][i] = vidID;
+        //p["vidID"][i] = vidID;
         x.open("GET", request, true);
         x.setRequestHeader("Content-type", "application/json");
         x.send()
