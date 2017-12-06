@@ -165,7 +165,7 @@ function createPlaylist(songArray) {
         x.setRequestHeader("Content-type", "application/json");
         x.send()
     }
-    showDiv(songArray, vidID);
+    showDiv(songArray);
 }
 
 function showDiv(songArray) {
