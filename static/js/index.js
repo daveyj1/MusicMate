@@ -165,11 +165,12 @@ function createPlaylist(randoSongs) {
         x.send()
     }
     console.log(finalArray);
-    showDiv(randoSongs);
+    showDiv(randoSongs, finalArray);
 }
 
-function showDiv(randoSongs) {
+function showDiv(randoSongs, finalArray) {
     console.log(finalArray);
+    console.log(finalArray[0]);
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
     for (var i = 0; i < 15; i++) {
