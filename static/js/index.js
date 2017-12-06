@@ -122,7 +122,7 @@ function getArtists() {
             console.log(arrayLength);
             for (let i = 0; i < 15; i++) {
                 var x = Math.floor(Math.random() * arrayLength);
-                if (i != 0 && randoSongs.findIndex(songArray[x])) {
+                if (i != 0 && $.inArray(songArray[x], randoSongs)) {
                     i--;
                     continue;
                 }
