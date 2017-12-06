@@ -166,20 +166,18 @@ function createPlaylist(songArray) {
     }
     //console.log(vidIDArray);
     console.log(finalArray);
-    showDiv(finalArray, vidIDArray);
+    showDiv(finalArray);
 }
 
-function showDiv(songArray, vidIDArray) {
+function showDiv(songArray) {
     console.log(finalArray);
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
-    //document.getElementById('playlistArtists').innerHTML = "";
     for (var i = 0; i < 15; i++) {
-        let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
-        let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray.indexOf('*'));
-        let id = songArray[i].substring(songArray[i].indexOf("*") + 1, songArray[i].length);
-        document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(id)"></i>  ' + song + ' (' + artist + ')' + "<br />";
-        //document.getElementById('playlistArtists').innerHTML += artist + "<br />";
+        let artist = finalArray[i].substring(0, finalArray[i].indexOf("+"));
+        let song = finalArray[i].substring(finalArray[i].indexOf("+") + 1, finalArray.indexOf('*'));
+        let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
+        document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vid)"></i>  ' + song + ' (' + artist + ')' + "<br />";
     }
 }
 
