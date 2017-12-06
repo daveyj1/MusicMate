@@ -118,9 +118,9 @@ function getVid(songArray) {
     x.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             //alert(this.response)
-            let thing = response.indexOf("videoId") + 10
-            let thing2 = response.indexOf("snippet") - 4
-            let vidID = response.substring(thing, thing2)
+            let thing = this.response.indexOf("videoId") + 10
+            let thing2 = this.response.indexOf("snippet") - 4
+            let vidID = this.response.substring(thing, thing2)
             alert(vidID)
         }
     }
