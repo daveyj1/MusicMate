@@ -96,23 +96,22 @@ function getArtists() {
                         if (albumPath.hasOwnProperty(albums)) {
                             let artistName = albumPath[albums].album.artists[0].name;
                             let songName = albumPath[albums].name;
-                            //console.log(artistName + " " + songName);
                             songArray.push(artistName + "+" + songName);
-                            if (albumPath[albums].preview_url !== null) {
-                                let button = document.createElement("BUTTON");
-                                let text = document.createTextNode(albumPath[albums].name);
-                                button.appendChild(text);
-                                button.onclick = () => {
-                                    if(currentlyPlaying){
-                                        currentAudio.pause();
-                                    }
-                                    let audio = new Audio(albumPath[albums].preview_url);
-                                    currentAudio = audio;
-                                    audio.play();
-                                    currentlyPlaying = true;
-                                };
-                                myContainer.appendChild(button);
-                            }
+                            // if (albumPath[albums].preview_url !== null) {
+                            //     let button = document.createElement("BUTTON");
+                            //     let text = document.createTextNode(albumPath[albums].name);
+                            //     button.appendChild(text);
+                            //     button.onclick = () => {
+                            //         if(currentlyPlaying){
+                            //             currentAudio.pause();
+                            //         }
+                            //         let audio = new Audio(albumPath[albums].preview_url);
+                            //         currentAudio = audio;
+                            //         audio.play();
+                            //         currentlyPlaying = true;
+                            //     };
+                            //     myContainer.appendChild(button);
+                            // }
 
                         }
                     }
@@ -167,7 +166,7 @@ function createPlaylist(songArray) {
 
 function showDiv(songArray) {
     document.getElementById('playlist').style.display = "block";
-    for (var i = 0; i < songArray.length; i++) {
+    for (var i = 0; i < 15; i++) {
         document.getElementById('playlistNames').innerHTML = songArray[i] + '\n'
     }
 }
