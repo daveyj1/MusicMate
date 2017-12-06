@@ -139,6 +139,8 @@ function createPlaylist(songArray) {
     let p = $('#playlistName').val();
     playlist["playlistName"] = p;
     document.getElementById('pName').innerHTML = "Playlist: " + p;
+    let song = songArray[0].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
+    let artist = songArray[0].substring(0, songArray[i].indexOf("+"));
     for (var i = 0; i < songArray.length; i++) {
         let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
         let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
@@ -167,7 +169,7 @@ function createPlaylist(songArray) {
 function showDiv(songArray) {
     document.getElementById('playlist').style.display = "block";
     for (var i = 0; i < 15; i++) {
-        document.getElementById('playlistNames').innerHTML += songArray[i] + '\n'
+        document.getElementById('playlistNames').innerHTML += songArray[i] + "<br />"
     }
 }
 
