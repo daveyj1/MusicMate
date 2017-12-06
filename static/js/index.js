@@ -117,7 +117,11 @@ function getVid(songArray) {
     var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + songArray[0] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4"
     x.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            alert(this.response)
+            //alert(this.response)
+            let thing = response.indexOf("videoId") + 10
+            let thing2 = response.indexOf("snippet") - 4
+            let vidID = response.substring(thing, thing2)
+            alert(vidID)
         }
     }
     x.open("GET", request, true)
