@@ -148,6 +148,7 @@ function getArtists() {
         console.log(songArray[x])
     }
     //console.log(randoSongs);
+    showDiv();
 }
 
 function createPlaylist(songArray) {
@@ -176,6 +177,10 @@ function createPlaylist(songArray) {
         x.send()
     }
     console.log(playlist);
+}
+
+function showDiv() {
+    document.getElementById('playlist').style.display = "block";
 }
 
 
