@@ -79,7 +79,7 @@ function getArtists() {
                             let artistName = albumPath[albums].album.artists[0].name;
                             let songName = albumPath[albums].name;
                             console.log(artistName + " " + songName);
-                            songArray.push(artistName + " " + songName);
+                            songArray.push(artistName + "+" + songName);
                             if (albumPath[albums].preview_url !== null) {
                                 let button = document.createElement("BUTTON");
                                 let text = document.createTextNode(albumPath[albums].name);
@@ -117,8 +117,8 @@ function createPlaylist(songArray) {
     console.log(pStr);
     for (var i = 0; i < songArray.length; i++) {
         // let songstr = [];
-        console.log(songArray[i].substring(0, songArray[i].indexOf(" ")));
-        console.log(songArray[i].substring(songArray[i].indexOf(" "), songArray[i].length));
+        console.log(songArray[i].substring(0, songArray[i].indexOf("+")));
+        console.log(songArray[i].substring(songArray[i].indexOf("+"), songArray[i].length));
         let songDetails = '{ "songName":"' + songArray[i].substring(0, songArray[i].indexOf(" ")) + '" , "artist":"' + songArray[i].substring(songArray[i].indexOf(" "), songArray[i].length) + '" , "videoID":"';
         var x = new XMLHttpRequest();
         var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + songArray[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4";
