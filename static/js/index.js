@@ -154,7 +154,7 @@ function createPlaylist(randoSongs) {
         x.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let thing = this.response.indexOf("videoId") + 11;
-                let thing2 = this.response.indexOf("snippet") - 15;
+                let thing2 = this.response.indexOf("snippet") - 14;
                 vidID = this.response.substring(thing, thing2);
                 vidIDArray.push(vidID);
                 finalArray.push(first + "*" + vidID);
