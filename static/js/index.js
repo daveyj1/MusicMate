@@ -153,7 +153,6 @@ function createPlaylist(songArray) {
                 let thing = this.response.indexOf("videoId") + 11;
                 let thing2 = this.response.indexOf("snippet") - 7;
                 vidID = this.response.substring(thing, thing2);
-                console.log(vidID);
                 vidIDArray.push(vidID);
             }
         };
@@ -171,9 +170,10 @@ function showDiv(songArray, vidIDArray) {
     //document.getElementById('playlistArtists').innerHTML = "";
     for (var i = 0; i < 15; i++) {
         let id = vidIDArray[i];
+        console.log(id);
         let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
         let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
-        document.getElementById('playlistNames').innerHTML += '<button class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(id)"></button> ' + song + ' (' + artist + ')' + "<br />";
+        document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(id)"></i> ' + song + ' (' + artist + ')' + "<br />";
         //document.getElementById('playlistArtists').innerHTML += artist + "<br />";
     }
 }
