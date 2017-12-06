@@ -140,16 +140,16 @@ function getArtists() {
     });
 }
 
-function createPlaylist(songArray) {
+function createPlaylist(randoSongs) {
     var vidIDArray = [];
     let p = $('#playlistName').val();
     playlist["playlistName"] = p;
     document.getElementById('pName').innerHTML = "Playlist: " + p;
-    for (var i = 0; i < songArray.length; i++) {
+    for (var i = 0; i < randoSongs.length; i++) {
         var x = new XMLHttpRequest();
-        var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + songArray[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4";
+        var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + randoSongs[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4";
         let vidID = "";
-        let first = songArray[i];
+        let first = randoSongs[i];
         x.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let thing = this.response.indexOf("videoId") + 11;
@@ -164,18 +164,17 @@ function createPlaylist(songArray) {
         x.setRequestHeader("Content-type", "application/json");
         x.send()
     }
-    //console.log(vidIDArray);
     console.log(finalArray);
-    showDiv(songArray);
+    showDiv(randoSongs);
 }
 
-function showDiv(songArray) {
+function showDiv(randoSongs) {
     console.log(finalArray);
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
     for (var i = 0; i < 15; i++) {
-        let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
-        let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
+        let artist = randoSongs[i].substring(0, randoSongs[i].indexOf("+"));
+        let song = randoSongs[i].substring(randoSongs[i].indexOf("+") + 1, randoSongs[i].length);
         //let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
         document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vid)"></i>  ' + song + ' (' + artist + ')' + "<br />";
     }
