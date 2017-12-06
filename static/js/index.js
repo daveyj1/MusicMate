@@ -170,7 +170,7 @@ function createPlaylist(songArray) {
 }
 
 function showDiv(songArray) {
-    console.log(somgArray);
+    console.log(finalArray);
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
     for (var i = 0; i < 15; i++) {
