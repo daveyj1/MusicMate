@@ -140,9 +140,11 @@ function getArtists() {
     });
     for (let i = 0; i < 10; i++) {
         var x = Math.floor(Math.random() * songArray.length);
-        randoSongs.push(songArray[x])
+        console.log(x);
+        randoSongs.push(songArray[x]);
+        console.log(songArray[x])
     }
-    console.log(randoSongs);
+    //console.log(randoSongs);
 }
 
 function createPlaylist(songArray) {
