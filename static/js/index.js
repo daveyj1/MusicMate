@@ -155,7 +155,7 @@ function createPlaylist(songArray) {
     var playlist = {};
     let p = $('#playlistName').val();
     playlist["playlistName"] = p;
-    document.getElementById('playlist').innerHTML = "Playlist: " + p;
+    document.getElementById('pName').innerHTML = "Playlist: " + p;
     for (var i = 0; i < songArray.length; i++) {
         let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
         let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
