@@ -143,11 +143,6 @@ function createPlaylist(songArray) {
     let song = songArray[0].substring(songArray[0].indexOf("+") + 1, songArray[0].length);
     let artist = songArray[0].substring(0, songArray[0].indexOf("+"));
     for (var i = 0; i < songArray.length; i++) {
-        let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
-        let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
-        //p["songName"][i] = song;
-        //p["artistName"][i] = artist;
-        console.log();
         var x = new XMLHttpRequest();
         var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + songArray[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4";
         let vidID = "";
@@ -165,6 +160,7 @@ function createPlaylist(songArray) {
         x.setRequestHeader("Content-type", "application/json");
         x.send()
     }
+    console.log(vidIDArray);
     showDiv(songArray, vidIDArray);
 }
 
@@ -173,9 +169,10 @@ function showDiv(songArray, vidIDArray) {
     document.getElementById('playlistNames').innerHTML = "";
     //document.getElementById('playlistArtists').innerHTML = "";
     for (var i = 0; i < 15; i++) {
+        let id = vidIDArray[i];
         let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
         let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
-        document.getElementById('playlistNames').innerHTML += '<button class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vidIDArray[i])"></button> ' + song + ' (' + artist + ')' + "<br />";
+        document.getElementById('playlistNames').innerHTML += '<button class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(id)"></button> ' + song + ' (' + artist + ')' + "<br />";
         //document.getElementById('playlistArtists').innerHTML += artist + "<br />";
     }
 }
