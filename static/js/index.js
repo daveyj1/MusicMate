@@ -175,7 +175,7 @@ function showDiv(songArray) {
     document.getElementById('playlistNames').innerHTML = "";
     for (var i = 0; i < 15; i++) {
         let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
-        let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray.length);
+        let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
         //let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
         document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vid)"></i>  ' + song + ' (' + artist + ')' + "<br />";
     }
