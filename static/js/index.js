@@ -153,7 +153,7 @@ function createPlaylist(songArray) {
         x.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let thing = this.response.indexOf("videoId") + 11;
-                let thing2 = this.response.indexOf("snippet") - 7;
+                let thing2 = this.response.indexOf("snippet") - 10;
                 vidID = this.response.substring(thing, thing2);
                 vidIDArray.push(vidID);
                 finalArray.push(first + "*" + vidID);
@@ -166,19 +166,20 @@ function createPlaylist(songArray) {
     }
     //console.log(vidIDArray);
     console.log(finalArray);
-    showDiv(finalArray);
+    showDiv(songArray);
 }
 
 function showDiv(songArray) {
-    console.log(finalArray);
+    console.log(somgArray);
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
     for (var i = 0; i < 15; i++) {
-        let artist = finalArray[i].substring(0, finalArray[i].indexOf("+"));
-        let song = finalArray[i].substring(finalArray[i].indexOf("+") + 1, finalArray.indexOf('*'));
-        let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
+        let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
+        let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray.length);
+        //let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
         document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vid)"></i>  ' + song + ' (' + artist + ')' + "<br />";
     }
+    //firebase.
 }
 
 function playSong(vidID) {
