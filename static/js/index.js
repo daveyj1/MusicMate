@@ -171,6 +171,7 @@ function createPlaylist(randoSongs) {
 function showDiv(randoSongs, finalArray) {
     console.log(finalArray);
     console.log(finalArray[0]);
+    console.log(randoSongs[0]);
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
     for (var i = 0; i < 15; i++) {
