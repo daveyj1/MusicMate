@@ -166,7 +166,7 @@ function createPlaylist(songArray) {
     }
     //console.log(vidIDArray);
     console.log(finalArray);
-    showDiv(songArray, vidIDArray);
+    showDiv(finalArray, vidIDArray);
 }
 
 function showDiv(songArray, vidIDArray) {
@@ -174,10 +174,9 @@ function showDiv(songArray, vidIDArray) {
     document.getElementById('playlistNames').innerHTML = "";
     //document.getElementById('playlistArtists').innerHTML = "";
     for (var i = 0; i < 15; i++) {
-        let id = vidIDArray[i];
-        console.log(id);
-        let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
         let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
+        let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray.indexOf('*'));
+        let id = songArray[i].substring(songArray[i].indexOf("*") + 1, songArray[i].length);
         document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(id)"></i>  ' + song + ' (' + artist + ')' + "<br />";
         //document.getElementById('playlistArtists').innerHTML += artist + "<br />";
     }
