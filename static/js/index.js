@@ -167,7 +167,7 @@ function createPlaylist(songArray) {
 function showDiv(songArray) {
     document.getElementById('playlist').style.display = "block";
     for (var i = 0; i < 15; i++) {
-        document.getElementById('playlistNames').innerHTML = songArray[i] + '\n'
+        document.getElementById('playlistNames').innerHTML += songArray[i] + '\n'
     }
 }
 
