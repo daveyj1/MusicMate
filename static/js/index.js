@@ -174,7 +174,7 @@ function showDiv() {
 function shuffleArray(songArray) {
     for (var i = songArray.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
+        var temp = songArray[i];
         songArray[i] = songArray[j];
         songArray[j] = temp;
     }
