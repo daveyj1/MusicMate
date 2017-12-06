@@ -79,7 +79,7 @@ function getArtists() {
                             let artistName = albumPath[albums].album.artists[0].name;
                             let songName = albumPath[albums].name;
                             console.log(artistName + " " + songName);
-                            songArray.push(artistName + "+" + songName);
+                            songArray.push(artistName + " " + songName);
                             if (albumPath[albums].preview_url !== null) {
                                 let button = document.createElement("BUTTON");
                                 let text = document.createTextNode(albumPath[albums].name);
@@ -112,21 +112,23 @@ function getArtists() {
 }
 
 function getVid(songArray) {
-    //alert(songArray)
-    var x = new XMLHttpRequest()
-    var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + songArray[0] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4"
-    x.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            //alert(this.response)
-            let thing = this.response.indexOf("videoId") + 10
-            let thing2 = this.response.indexOf("snippet") - 4
-            let vidID = this.response.substring(thing, thing2)
-            alert(vidID)
+    for (var i = 0; i < songArray.length; i++) {
+        var x = new XMLHttpRequest()
+        var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + songArray[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4"
+        x.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                //alert(this.response)
+                let thing = this.response.indexOf("videoId") + 11
+                let thing2 = this.response.indexOf("snippet") - 7
+                let vidID = this.response.substring(thing, thing2)
+                console.log(vidID)
+            }
         }
+        x.open("GET", request, true)
+        x.setRequestHeader("Content-type", "application/json")
+        x.send()
     }
-    x.open("GET", request, true)
-    x.setRequestHeader("Content-type", "application/json")
-    x.send()
+
 }
 
 

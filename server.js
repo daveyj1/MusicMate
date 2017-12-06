@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
     };
     request(opts, (err, res, body) => {
         if (err) {
-            console.log(err);
+            console.log(err.message);
         }
         else {
             console.log(JSON.parse(body).access_token);
@@ -70,5 +70,5 @@ app.post('/searchArtist', (request, response) => {
     }
 });
 
-app.set('port', (process.env.PORT || 8020));
+app.set('port', (process.env.PORT || 8031));
 app.listen(app.get('port'));
