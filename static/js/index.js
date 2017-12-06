@@ -49,7 +49,7 @@ window.onclick = function(event) {
 };
 
 function getArtists() {
-    let count = 0;
+    let arrayLength = 0;
     let flag = 0;
     let artists = {};
     let artist1 = $('#firstGenre').val();
@@ -134,7 +134,8 @@ function getArtists() {
                 // }
                 // console.log(randoSongs);
             }
-            createPlaylist(songArray)
+            createPlaylist(songArray);
+            arrayLength = songArray.length;
         },
         error: (err) => {
             console.log(err);
@@ -142,14 +143,12 @@ function getArtists() {
     }).done(()=>{
         spinner.hide();
     });
-    // console.log(count);
-    console.log(songArray.length);
+    console.log(arrayLength);
     for (let i = 0; i < 10; i++) {
-        var x = Math.floor(Math.random() * count);
+        var x = Math.floor(Math.random() * arrayLength);
         console.log(x);
         randoSongs.push(songArray[x]);
     }
-    //console.log(randoSongs);
     showDiv();
 }
 
