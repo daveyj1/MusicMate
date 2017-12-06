@@ -157,10 +157,9 @@ function createPlaylist(songArray) {
                 let thing2 = this.response.indexOf("snippet") - 7;
                 vidID = this.response.substring(thing, thing2);
                 vidIDArray.push(vidID);
-                second = vidID;
             }
         };
-        finalArray.push(first + "*" + second);
+        finalArray.push(first + "*" + vidID);
         x.open("GET", request, true);
         x.setRequestHeader("Content-type", "application/json");
         x.send()
