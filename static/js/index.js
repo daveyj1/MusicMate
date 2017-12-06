@@ -169,10 +169,11 @@ function createPlaylist(songArray) {
 function showDiv(songArray) {
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
+    document.getElementById('playlistNames2').innerHTML = "";
     for (var i = 0; i < 15; i++) {
         let song = songArray[i].substring(songArray[i].indexOf("+") + 1, songArray[i].length);
         let artist = songArray[i].substring(0, songArray[i].indexOf("+"));
-        document.getElementById('playlistNames').innerHTML += song;
+        document.getElementById('playlistNames').innerHTML += song + "<br />";
         document.getElementById('playlistNames2').innerHTML += artist + "<br />";
     }
 }

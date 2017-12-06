@@ -113,6 +113,13 @@ hr{
     margin-top: 15px;
 }
 
+.songs {
+    float: left;
+}
+.artist {
+    float: right;
+}
+
 .btn {
     font-weight: 700;
     height: 36px;
