@@ -150,16 +150,16 @@ function createPlaylist(songArray) {
         var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + songArray[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4";
         let vidID = "";
         let first = songArray[i];
-        let second = "";
         x.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let thing = this.response.indexOf("videoId") + 11;
                 let thing2 = this.response.indexOf("snippet") - 7;
                 vidID = this.response.substring(thing, thing2);
                 vidIDArray.push(vidID);
+                finalArray.push(first + "*" + vidID);
             }
         };
-        finalArray.push(first + "*" + vidID);
+        //finalArray.push(first + "*" + vidID);
         x.open("GET", request, true);
         x.setRequestHeader("Content-type", "application/json");
         x.send()
