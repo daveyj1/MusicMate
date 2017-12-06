@@ -32,7 +32,7 @@
 </head>
 <body class="bg">
 <div class="container">
-    <h1 class="welcome text-center">Welcome to MusicMatch!</h1>
+    <h1 class="welcome text-center">Welcome to MusicMatch! <i class="fa fa-play-circle-o" aria-hidden="true"></i></h1>
     <div class="left-card card-container">
         <h5 id="profile" class='artist_title text-center'>Hi, User!</h5>
         <hr>
@@ -67,7 +67,6 @@
             <input type="text" id="playlistName" class="artist_box" required>
             <hr>
             <button class="btn btn-lg btn-primary" type="button" onclick="getArtists()">Create Playlist</button>
-            <div id="results"></div>
         </form>
     </div>
     <div id="playlist" class="right-card card-container" style="display:none;">
