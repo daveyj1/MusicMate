@@ -100,35 +100,41 @@ function getArtists() {
                     }
                 }
             }
-            getVid(songArray)
+            createPlaylist(songArray)
         },
         error: (err) => {
             console.log(err);
         }
-    }).done((songArray)=>{
+    }).done(()=>{
         spinner.hide();
-        makePlaylist(songArray);
     });
 }
 
-function getVid(songArray) {
+function createPlaylist(songArray) {
+    //var playlistText = [];
+    let p = $('#playlistName').val();
+    var pStr = '{ "' + p + '" : [';
+    console.log(pStr);
     for (var i = 0; i < songArray.length; i++) {
-        var x = new XMLHttpRequest()
-        var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + songArray[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4"
+        // let songstr = [];
+        let songDetails = '{ "songName":"' + songArray[i].substring(0, songArray[i].indexOf(" ")) + '" , "artist":"' + songArray[i].substring(songArray[i].indexOf(" "), songArray[i].length) + '" , "videoID":"';
+        var x = new XMLHttpRequest();
+        var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + songArray[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4";
         x.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                //alert(this.response)
-                let thing = this.response.indexOf("videoId") + 11
-                let thing2 = this.response.indexOf("snippet") - 7
-                let vidID = this.response.substring(thing, thing2)
-                console.log(vidID)
+                let thing = this.response.indexOf("videoId") + 11;
+                let thing2 = this.response.indexOf("snippet") - 7;
+                let vidID = this.response.substring(thing, thing2);
+                let vidStr = vidID + '" },';
+                songDetails = songDetails + vidStr;
+                console.log(vidStr);
             }
         }
-        x.open("GET", request, true)
-        x.setRequestHeader("Content-type", "application/json")
+        pStr = pStr + songDetails;
+        x.open("GET", request, true);
+        x.setRequestHeader("Content-type", "application/json");
         x.send()
     }
-
 }
 
 
