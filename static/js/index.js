@@ -118,6 +118,7 @@ function getArtists() {
 }
 
 function createPlaylist(randoSongs) {
+    stopMusic();
     playlistEntry = [];
     let counter = 0;
     let p = $('#playlistName').val();
@@ -149,7 +150,16 @@ function createPlaylist(randoSongs) {
         x.send()
     }
 }
-
+function stopMusic() {
+    $("iframe").each(function() {
+        var src= $(this).attr('src');
+        $(this).attr('src',src);
+    });
+    let iframes = document.querySelectorAll('iframe');
+    for (let i = 0; i < iframes.length; i++) {
+        iframes[i].parentNode.removeChild(iframes[i]);
+    }
+}
 function showDiv(playlistEntry) {
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
@@ -161,24 +171,28 @@ function showDiv(playlistEntry) {
         icon.classList.add("fa-play-circle");
         icon.style.fontSize = "20px";
         icon.style.margin = "0";
-        icon.innerHTML = " " + entry.songName + " (" + entry.artist + ")";
+        icon.innerHTML = " " + entry.songName + " (" + entry.artist + ")" + "<br />" ;
         icon.className += ' artist_title';
         icon.addEventListener('click', ()=>{
-            playSong(vid);
+            if(icon.className.indexOf('fa-pause-circle') !== -1){
+                stopMusic();
+                icon.className = "fa fa-play-circle artist_title";
+            }
+            else {
+                let children = icon.parentNode.childNodes;
+                for (let i = 0; i < children.length; i++) {
+                    children[i].className = "fa fa-play-circle artist_title";
+                }
+                icon.classList.add("fa-pause-circle");
+                playSong(vid);
+            }
         });
         document.getElementById('playlistNames').appendChild(icon);
     }
 }
 
 function playSong(vidID) {
-    $("iframe").each(function() {
-        var src= $(this).attr('src');
-        $(this).attr('src',src);
-    });
-    let iframes = document.querySelectorAll('iframe');
-    for (let i = 0; i < iframes.length; i++) {
-        iframes[i].parentNode.removeChild(iframes[i]);
-    }
+    stopMusic();
     let body = document.getElementById('bodyTag');
     let iframe = document.createElement('iframe');
     iframe.width = "420";
