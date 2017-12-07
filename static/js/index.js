@@ -189,7 +189,6 @@ function showDiv(randoSongs, finalArray, vidIDArray) {
 }
 
 function playSong(vidID) {
-    alert(vidID);
     // 2. This code loads the IFrame Player API code asynchronously.
     // var tag = document.createElement('script');
     //
@@ -229,13 +228,12 @@ function playSong(vidID) {
     // function stopVideo() {
     //     player.stopVideo();
     // }
-    $(function(){
-        $('.close').click(function(){
-            $('iframe').attr('src', $('iframe').attr('src'));
-        });
+    $("iframe").each(function() {
+        var src= $(this).attr('src');
+        $(this).attr('src',src);
     });
     let body = document.getElementById('bodyTag');
-    let iframe = document.createElement('IFRAME');
+    let iframe = document.createElement('iframe');
     iframe.width = "420";
     iframe.height = "315";
     iframe.src = "//www.youtube.com/embed/" + vidID + "?rel=0&autoplay=1";
