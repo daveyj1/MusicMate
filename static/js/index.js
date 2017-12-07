@@ -166,11 +166,14 @@ function createPlaylist(randoSongs) {
 function showDiv(randoSongs, finalArray, vidIDArray) {
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
+    console.log(finalArray);
     for (var i = 0; i < 15; i++) {
         let artist = randoSongs[i].substring(0, randoSongs[i].indexOf("+"));
+        console.log(artist);
         let song = randoSongs[i].substring(randoSongs[i].indexOf("+") + 1, randoSongs[i].indexOf("*"));
+        console.log(song);
         let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
-        alert(artist+ " " + song);
+        console.log(vid);
         let icon = document.createElement("I");
         icon.classList.add("fa");
         icon.classList.add("fa-play-circle");
