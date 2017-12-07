@@ -175,6 +175,9 @@ function showDiv(randoSongs, finalArray, vidIDArray) {
         icon.classList.add("fa-play-circle");
         icon.style.fontSize = "24px";
         icon.innerHTML = song + '-' + artist;
+        icon.addEventListener('click', ()=>{
+            alert('You clicked button #' + i + ' song name: ' + song);
+        });
         document.getElementById('playlistNames').appendChild(icon);
         // document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vid)"></i>  ' + song + ' (' + artist + ')' + "<br />";
     }
