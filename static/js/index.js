@@ -229,11 +229,15 @@ function playSong(vidID) {
     // function stopVideo() {
     //     player.stopVideo();
     // }
+    let iframes = document.querySelector('iframe');
+    for(let i = 0; i < iframes.length; i++){
+        iframes[i].parentNode.removeChild(iframes[i]);
+    }
     let body = document.getElementById('bodyTag');
     let iframe = document.createElement('IFRAME');
     iframe.width = "420";
     iframe.height = "315";
-    iframe.src = "//www.youtube.com/embed/" + vidID + "?rel=0";
+    iframe.src = "//www.youtube.com/embed/" + vidID + "?rel=0&autoplay=1";
     body.appendChild(iframe);
 }
 
