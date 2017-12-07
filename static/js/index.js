@@ -172,7 +172,7 @@ function showDiv(randoSongs, finalArray, vidIDArray) {
         // console.log(artist);
         // let song = randoSongs[i].substring(randoSongs[i].indexOf("+") + 1, randoSongs[i].indexOf("*"));
         // console.log(song);
-        // let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
+        let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
         // console.log(vid);
         let values = randoSongs[i].split("+");
         let icon = document.createElement("I");
@@ -180,9 +180,8 @@ function showDiv(randoSongs, finalArray, vidIDArray) {
         icon.classList.add("fa-play-circle");
         icon.style.fontSize = "24px";
         icon.innerHTML = values[0] + "-" + values[1];
-        alert(values[2]);
         icon.addEventListener('click', ()=>{
-            playSong(values[2]);
+            playSong(vid);
             // alert('You clicked song name: ' + song);
         });
         document.getElementById('playlistNames').appendChild(icon);
