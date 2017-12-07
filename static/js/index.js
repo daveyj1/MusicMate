@@ -232,8 +232,8 @@ function playSong(vidID) {
         var src= $(this).attr('src');
         $(this).attr('src',src);
     });
-    var iframes = document.querySelectorAll('iframe');
-    for (var i = 0; i < iframes.length; i++) {
+    let iframes = document.querySelectorAll('iframe');
+    for (let i = 0; i < iframes.length; i++) {
         iframes[i].parentNode.removeChild(iframes[i]);
     }
     let body = document.getElementById('bodyTag');
