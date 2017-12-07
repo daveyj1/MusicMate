@@ -180,6 +180,7 @@ function showDiv(randoSongs, finalArray, vidIDArray) {
         icon.classList.add("fa-play-circle");
         icon.style.fontSize = "24px";
         icon.innerHTML = values[0] + "-" + values[1];
+        alert(values[2]);
         icon.addEventListener('click', ()=>{
             playSong(values[2]);
             // alert('You clicked song name: ' + song);
