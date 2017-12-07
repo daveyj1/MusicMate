@@ -135,8 +135,6 @@ function getArtists() {
 }
 
 function createPlaylist(randoSongs) {
-    let p = $('#playlistName').val();
-    playlist["playlistName"] = p;
     let counter = 0;
     document.getElementById('pName').innerHTML = "Playlist: " + p;
     for (var i = 0; i < randoSongs.length; i++) {
@@ -161,23 +159,22 @@ function createPlaylist(randoSongs) {
         x.setRequestHeader("Content-type", "application/json");
         x.send()
     }
-    // console.log(finalArray);
-    // showDiv(randoSongs, finalArray, vidIDArray);
 }
 
 function showDiv(randoSongs, finalArray, vidIDArray) {
-    console.log(finalArray);
-    console.log(vidIDArray);
-    console.log(vidIDArray[0]);
-    console.log(finalArray[0]);
-    console.log(randoSongs[0]);
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
     for (var i = 0; i < 15; i++) {
         let artist = randoSongs[i].substring(0, randoSongs[i].indexOf("+"));
-        let song = randoSongs[i].substring(randoSongs[i].indexOf("+") + 1, randoSongs[i].length);
-        //let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
-        document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vid)"></i>  ' + song + ' (' + artist + ')' + "<br />";
+        let song = randoSongs[i].substring(randoSongs[i].indexOf("+") + 1, randoSongs[i].indexOf("*"));
+        let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
+        let icon = document.createElement("I");
+        icon.classList.add("fa");
+        icon.classList.add("fa-play-circle");
+        icon.style.fontSize = "24px";
+
+        document.getElementById('playListNames').appendChild(icon);
+        // document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vid)"></i>  ' + song + ' (' + artist + ')' + "<br />";
     }
 }
 
