@@ -3,8 +3,7 @@ let currentAudio;
 var songArray = [];
 var randoSongs = [];
 var finalArray = [];
-var vidIDArray = [];
-
+var playlistEntry = [];
 function logIn() {
     const txtEmail = document.getElementById('txtEmail');
     const txtPassword = document.getElementById('txtPassword');
@@ -135,24 +134,28 @@ function getArtists() {
 }
 
 function createPlaylist(randoSongs) {
+    playlistEntry = [];
     let counter = 0;
     let p = $('#playlistName').val();
     playlist["playlistName"] = p;
     document.getElementById('pName').innerHTML = "Playlist: " + p;
-    for (var i = 0; i < randoSongs.length; i++) {
-        var x = new XMLHttpRequest();
-        var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + randoSongs[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4";
+    for (let i = 0; i < randoSongs.length; i++) {
+        let x = new XMLHttpRequest();
+        let request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + randoSongs[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4";
         let vidID = "";
-        let first = randoSongs[i];
+        let entry = {
+            artist: randoSongs[i].split("+")[0],
+            songName: randoSongs[i].split("+")[1]
+        };
         x.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState === 4 && this.status === 200) {
                 let thing = this.response.indexOf("videoId") + 11;
                 let thing2 = this.response.indexOf("snippet") - 12;
                 vidID = this.response.substring(thing, thing2);
-                vidIDArray.push(vidID);
-                finalArray.push(first + "+" + vidID);
+                entry.vid = vidID;
+                playlistEntry.push(entry);
                 if(counter >= randoSongs.length - 1){
-                    showDiv(randoSongs, finalArray, vidIDArray);
+                    showDiv(playlistEntry);
                 }
                 counter++;
             }
@@ -163,26 +166,19 @@ function createPlaylist(randoSongs) {
     }
 }
 
-function showDiv(randoSongs, finalArray, vidIDArray) {
+function showDiv(playlistEntry) {
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
-    console.log(finalArray);
-    for (var i = 0; i < 15; i++) {
-        // let artist = randoSongs[i].substring(0, randoSongs[i].indexOf("+"));
-        // console.log(artist);
-        // let song = randoSongs[i].substring(randoSongs[i].indexOf("+") + 1, randoSongs[i].indexOf("*"));
-        // console.log(song);
-        let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
-        // console.log(vid);
-        let values = randoSongs[i].split("+");
+    for (let i = 0; i < 15; i++) {
+        let entry = playlistEntry[i];
+        let vid = entry.vid;
         let icon = document.createElement("I");
         icon.classList.add("fa");
         icon.classList.add("fa-play-circle");
         icon.style.fontSize = "24px";
-        icon.innerHTML = values[0] + "-" + values[1];
+        icon.innerHTML = entry.artist + "-" + entry.songName;
         icon.addEventListener('click', ()=>{
             playSong(vid);
-            // alert('You clicked song name: ' + song);
         });
         document.getElementById('playlistNames').appendChild(icon);
         // document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vid)"></i>  ' + song + ' (' + artist + ')' + "<br />";
@@ -190,45 +186,6 @@ function showDiv(randoSongs, finalArray, vidIDArray) {
 }
 
 function playSong(vidID) {
-    // 2. This code loads the IFrame Player API code asynchronously.
-    // var tag = document.createElement('script');
-    //
-    // tag.src = "https://www.youtube.com/iframe_api";
-    // var firstScriptTag = document.getElementsByTagName('script')[0];
-    // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    //
-    // // 3. This function creates an <iframe> (and YouTube player)
-    // //    after the API code downloads.
-    // var player;
-    // function onYouTubeIframeAPIReady() {
-    //     player = new YT.Player('player', {
-    //         height: '480',
-    //         width: '720',
-    //         videoId: vidID,
-    //         events: {
-    //             'onReady': onPlayerReady,
-    //             'onStateChange': onPlayerStateChange
-    //         }
-    //     });
-    // }
-    //
-    // // 4. The API will call this function when the video player is ready.
-    // function onPlayerReady(event) {
-    //     event.target.playVideo();
-    // }
-    //
-    // // 5. The API calls this function when the player's state changes.
-    // //    The function indicates that when playing a video (state=1),
-    // //    the player should play for six seconds and then stop.
-    // var done = false;
-    // function onPlayerStateChange(event) {
-    //     if (event.data === YT.PlayerState.PLAYING && !done) {
-    //         done = true;
-    //     }
-    // }
-    // function stopVideo() {
-    //     player.stopVideo();
-    // }
     $("iframe").each(function() {
         var src= $(this).attr('src');
         $(this).attr('src',src);
