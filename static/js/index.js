@@ -3,6 +3,7 @@ let currentAudio;
 var songArray = [];
 var randoSongs = [];
 var finalArray = [];
+var vidIDArray = [];
 
 function logIn() {
     const txtEmail = document.getElementById('txtEmail');
@@ -75,7 +76,6 @@ function getArtists() {
     spinner.show();
     $.ajax({
         url: '/searchArtist',
-        dataType: 'json',
         type: 'POST',
         data: JSON.stringify(artists),
         contentType: "application/json",
@@ -115,8 +115,8 @@ function getArtists() {
             arrayLength = songArray.length;
             console.log(arrayLength);
             for (let i = 0; i < 15; i++) {
-                var x = Math.floor(Math.random() * arrayLength);
-                if ($.inArray(songArray[x], randoSongs) != -1) {
+                let x = Math.floor(Math.random() * arrayLength);
+                if ($.inArray(songArray[x], randoSongs) !== -1) {
                     i--;
                     continue;
                 }
@@ -126,6 +126,7 @@ function getArtists() {
             createPlaylist(randoSongs);
         },
         error: (err) => {
+            alert("ERROR");
             console.log(err);
         }
     }).done(()=>{
@@ -134,7 +135,6 @@ function getArtists() {
 }
 
 function createPlaylist(randoSongs) {
-    var vidIDArray = [];
     let p = $('#playlistName').val();
     playlist["playlistName"] = p;
     document.getElementById('pName').innerHTML = "Playlist: " + p;
@@ -152,17 +152,18 @@ function createPlaylist(randoSongs) {
                 finalArray.push(first + "*" + vidID);
             }
         };
-
         x.open("GET", request, true);
         x.setRequestHeader("Content-type", "application/json");
         x.send()
     }
     console.log(finalArray);
-    showDiv(randoSongs, finalArray);
+    showDiv(randoSongs, finalArray, vidIDArray);
 }
 
-function showDiv(randoSongs, finalArray) {
+function showDiv(randoSongs, finalArray, vidIDArray) {
     console.log(finalArray);
+    console.log(vidIDArray);
+    console.log(vidIDArray[0]);
     console.log(finalArray[0]);
     console.log(randoSongs[0]);
     document.getElementById('playlist').style.display = "block";
@@ -173,7 +174,6 @@ function showDiv(randoSongs, finalArray) {
         //let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
         document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vid)"></i>  ' + song + ' (' + artist + ')' + "<br />";
     }
-    //firebase.
 }
 
 function playSong(vidID) {

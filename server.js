@@ -16,6 +16,7 @@ let app = express();
 
 app.use("/css", express.static(__dirname + '/static/css'));
 app.use("/js", express.static(__dirname + '/static/js'));
+app.use("/static", express.static(__dirname + '/static'));
 app.use(cors());
 app.use(bodyParser.json());
 
