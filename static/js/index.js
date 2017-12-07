@@ -170,6 +170,7 @@ function showDiv(randoSongs, finalArray, vidIDArray) {
         let artist = randoSongs[i].substring(0, randoSongs[i].indexOf("+"));
         let song = randoSongs[i].substring(randoSongs[i].indexOf("+") + 1, randoSongs[i].indexOf("*"));
         let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
+        alert(artist+ " " + song);
         let icon = document.createElement("I");
         icon.classList.add("fa");
         icon.classList.add("fa-play-circle");
