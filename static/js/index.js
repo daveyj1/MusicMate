@@ -136,6 +136,8 @@ function getArtists() {
 
 function createPlaylist(randoSongs) {
     let counter = 0;
+    let p = $('#playlistName').val();
+    playlist["playlistName"] = p;
     document.getElementById('pName').innerHTML = "Playlist: " + p;
     for (var i = 0; i < randoSongs.length; i++) {
         var x = new XMLHttpRequest();
