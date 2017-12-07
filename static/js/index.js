@@ -150,7 +150,7 @@ function createPlaylist(randoSongs) {
                 let thing2 = this.response.indexOf("snippet") - 12;
                 vidID = this.response.substring(thing, thing2);
                 vidIDArray.push(vidID);
-                finalArray.push(first + "*" + vidID);
+                finalArray.push(first + "+" + vidID);
                 if(counter >= randoSongs.length - 1){
                     showDiv(randoSongs, finalArray, vidIDArray);
                 }
@@ -168,19 +168,20 @@ function showDiv(randoSongs, finalArray, vidIDArray) {
     document.getElementById('playlistNames').innerHTML = "";
     console.log(finalArray);
     for (var i = 0; i < 15; i++) {
-        let artist = randoSongs[i].substring(0, randoSongs[i].indexOf("+"));
-        console.log(artist);
-        let song = randoSongs[i].substring(randoSongs[i].indexOf("+") + 1, randoSongs[i].indexOf("*"));
-        console.log(song);
-        let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
-        console.log(vid);
+        // let artist = randoSongs[i].substring(0, randoSongs[i].indexOf("+"));
+        // console.log(artist);
+        // let song = randoSongs[i].substring(randoSongs[i].indexOf("+") + 1, randoSongs[i].indexOf("*"));
+        // console.log(song);
+        // let vid = finalArray[i].substring(finalArray[i].indexOf("*") + 1, finalArray[i].length);
+        // console.log(vid);
+        let values = randoSongs[i].split("+");
         let icon = document.createElement("I");
         icon.classList.add("fa");
         icon.classList.add("fa-play-circle");
         icon.style.fontSize = "24px";
-        icon.innerHTML = song + artist;
+        icon.innerHTML = values[0] + "-" + values[1];
         icon.addEventListener('click', ()=>{
-            playSong(vid);
+            playSong(values[2]);
             // alert('You clicked song name: ' + song);
         });
         document.getElementById('playlistNames').appendChild(icon);
