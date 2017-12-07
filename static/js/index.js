@@ -160,12 +160,13 @@ function showDiv(playlistEntry) {
         icon.classList.add("fa");
         icon.classList.add("fa-play-circle");
         icon.style.fontSize = "24px";
-        icon.className += "artist_title text-left";
-        icon.innerHTML = entry.songName + " (" + entry.artist + ")";
+        //icon.className += "artist_title text-left";
+        icon.innerHTML = " " + entry.songName + " (" + entry.artist + ")";
         icon.addEventListener('click', ()=>{
             playSong(vid);
         });
         document.getElementById('playlistNames').appendChild(icon);
+        //icon.className += "artist_title text-left";
         // document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vid)"></i>  ' + song + ' (' + artist + ')' + "<br />";
     }
 }
