@@ -159,15 +159,14 @@ function showDiv(playlistEntry) {
         let icon = document.createElement("I");
         icon.classList.add("fa");
         icon.classList.add("fa-play-circle");
-        icon.style.fontSize = "24px";
-        //icon.className += "artist_title text-left";
+        icon.style.fontSize = "20px";
+        icon.style.margin = "0";
         icon.innerHTML = " " + entry.songName + " (" + entry.artist + ")";
+        icon.className += ' artist_title';
         icon.addEventListener('click', ()=>{
             playSong(vid);
         });
         document.getElementById('playlistNames').appendChild(icon);
-        //icon.className += "artist_title text-left";
-        // document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vid)"></i>  ' + song + ' (' + artist + ')' + "<br />";
     }
 }
 
