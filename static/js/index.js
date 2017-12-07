@@ -50,29 +50,22 @@ window.onclick = function(event) {
 };
 
 function getArtists() {
+    songArray = [];
+    randoSongs = [];
+    finalArray = [];
     let arrayLength = "";
-    let flag = 0;
     let artists = {};
     let artist1 = $('#firstGenre').val();
     if (artist1 !== "") {
         artists.artist1 = artist1;
     }
-    else {
-        flag++;
-    }
     let artist2 = $('#secondGenre').val();
     if (artist2 !== "") {
         artists.artist2 = artist2;
     }
-    else {
-        flag++;
-    }
     let artist3 = $('#thirdGenre').val();
     if (artist3 !== "") {
         artists.artist3 = artist3;
-    }
-    else {
-        flag++;
     }
     if (jQuery.isEmptyObject(artists)) {
         alert("Please enter at least 1 artist.");
@@ -150,7 +143,6 @@ function createPlaylist(randoSongs) {
         var request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + randoSongs[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4";
         let vidID = "";
         let first = randoSongs[i];
-        let count = i;
         x.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let thing = this.response.indexOf("videoId") + 11;
