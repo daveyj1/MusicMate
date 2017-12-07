@@ -137,6 +137,7 @@ function getArtists() {
 function createPlaylist(randoSongs) {
     let p = $('#playlistName').val();
     playlist["playlistName"] = p;
+    let counter = 0;
     document.getElementById('pName').innerHTML = "Playlist: " + p;
     for (var i = 0; i < randoSongs.length; i++) {
         var x = new XMLHttpRequest();
@@ -150,14 +151,18 @@ function createPlaylist(randoSongs) {
                 vidID = this.response.substring(thing, thing2);
                 vidIDArray.push(vidID);
                 finalArray.push(first + "*" + vidID);
+                if(counter >= randoSongs.length - 1){
+                    showDiv(randoSongs, finalArray, vidIDArray);
+                }
+                counter++;
             }
         };
         x.open("GET", request, true);
         x.setRequestHeader("Content-type", "application/json");
         x.send()
     }
-    console.log(finalArray);
-    showDiv(randoSongs, finalArray, vidIDArray);
+    // console.log(finalArray);
+    // showDiv(randoSongs, finalArray, vidIDArray);
 }
 
 function showDiv(randoSongs, finalArray, vidIDArray) {
