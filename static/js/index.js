@@ -11,7 +11,7 @@ function logIn() {
     const pass = txtPassword.value;
     firebase.auth().signInWithEmailAndPassword(email, pass).then(function (user) {
         window.location.href = "index";
-        document.getElementById('profile').innerHTML = "Hi, " + txtEmail.substring(0, txtEmail.indexOf('@'));
+        // document.getElementById('profile').innerHTML = "Hi, " + txtEmail.substring(0, txtEmail.indexOf('@'));
     }).catch(function(error) {
         alert(error.message);
     });
@@ -23,7 +23,7 @@ function signUp() {
     const pass = txtPassword.value;
     firebase.auth().createUserWithEmailAndPassword(email, pass).then(function (user) {
         window.location.href = "index";
-        document.getElementById('profile').innerHTML = "Hi, " + txtEmail.substring(0, txtEmail.indexOf('@'));
+        // document.getElementById('profile').innerHTML = "Hi, " + txtEmail.substring(0, txtEmail.indexOf('@'));
     }).catch(function(error) {
         alert(error.message);
     });
@@ -90,22 +90,6 @@ function getArtists() {
                             let artistName = albumPath[albums].album.artists[0].name;
                             let songName = albumPath[albums].name;
                             songArray.push(artistName + "+" + songName);
-                            // if (albumPath[albums].preview_url !== null) {
-                            //     let button = document.createElement("BUTTON");
-                            //     let text = document.createTextNode(albumPath[albums].name);
-                            //     button.appendChild(text);
-                            //     button.onclick = () => {
-                            //         if(currentlyPlaying){
-                            //             currentAudio.pause();
-                            //         }
-                            //         let audio = new Audio(albumPath[albums].preview_url);
-                            //         currentAudio = audio;
-                            //         audio.play();
-                            //         currentlyPlaying = true;
-                            //     };
-                            //     myContainer.appendChild(button);
-                            // }
-
                         }
                     }
                 }
@@ -176,7 +160,8 @@ function showDiv(playlistEntry) {
         icon.classList.add("fa");
         icon.classList.add("fa-play-circle");
         icon.style.fontSize = "24px";
-        icon.innerHTML = entry.artist + "-" + entry.songName;
+        icon.className += "artist_title text-left";
+        icon.innerHTML = entry.songName + " (" + entry.artist + ")";
         icon.addEventListener('click', ()=>{
             playSong(vid);
         });
