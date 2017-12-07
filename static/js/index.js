@@ -180,8 +180,8 @@ function showDiv(randoSongs, finalArray, vidIDArray) {
         icon.style.fontSize = "24px";
         icon.innerHTML = song + artist;
         icon.addEventListener('click', ()=>{
-            playSong(vid);
-            // alert('You clicked song name: ' + song);
+            // playSong(vid);
+            alert('You clicked song name: ' + song);
         });
         document.getElementById('playlistNames').appendChild(icon);
         // document.getElementById('playlistNames').innerHTML += '<i class="fa fa-play-circle" style="font-size:24px;" onclick="playSong(vid)"></i>  ' + song + ' (' + artist + ')' + "<br />";
