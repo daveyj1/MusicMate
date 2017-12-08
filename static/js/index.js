@@ -14,7 +14,6 @@ var finalArray = [];
 var playlistEntry = [];
 let firebaseRef = firebase.database().ref('users');
 let user;
-let userName = "";
 
 function loadData() {
     user = firebase.auth().currentUser;
@@ -51,7 +50,6 @@ function logIn() {
     let pass = txtPassword.value;
     firebase.auth().signInWithEmailAndPassword(email, pass).then(function (user) {
         window.location.href = "index";
-        document.getElementById('profile').innerHTML = "Hi, " + userName;
     }).catch(function(error) {
         alert(error.message);
     });
@@ -65,7 +63,6 @@ function signUp() {
     firebase.auth().createUserWithEmailAndPassword(email, pass).then(function (user) {
         setTimeout(function() {}, 3000);
         window.location.href = "index";
-        document.getElementById('profile').innerHTML = "Hi, " + userName;
     }).catch(function(error) {
         alert(error.message);
     });
