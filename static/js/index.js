@@ -1,9 +1,33 @@
-let currentlyPlaying = false;
-let currentAudio;
+var config = {
+    apiKey: "AIzaSyCnkvNIBIlO1PqPqnoK2eAoejUXt84I40c",
+    authDomain: "musicmatch-fda17.firebaseapp.com",
+    databaseURL: "https://musicmatch-fda17.firebaseio.com",
+    projectId: "musicmatch-fda17",
+    storageBucket: "musicmatch-fda17.appspot.com",
+    messagingSenderId: "840617963782"
+};
+firebase.initializeApp(config);
+
 var songArray = [];
 var randoSongs = [];
 var finalArray = [];
 var playlistEntry = [];
+let firebaseRef = firebase.database().ref('users');
+let user;
+
+function loadData() {
+    user = firebase.auth().currentUser;
+    let counter = 1;
+    firebaseRef.child(user.uid).once("value").then(function (snapshot) {
+       for(let key in snapshot.val()){
+            if(counter <= 5){
+                $("#link" + counter).html(key);
+            }
+            counter++;
+       }
+    });
+}
+
 function logIn() {
     const txtEmail = document.getElementById('txtEmail');
     const txtPassword = document.getElementById('txtPassword');
@@ -11,10 +35,16 @@ function logIn() {
     const pass = txtPassword.value;
     firebase.auth().signInWithEmailAndPassword(email, pass).then(function (user) {
         window.location.href = "index";
-        // document.getElementById('profile').innerHTML = "Hi, " + txtEmail.substring(0, txtEmail.indexOf('@'));
+        document.getElementById('profile').innerHTML = "Hi, " + email.substring(0, email.indexOf('@'));
     }).catch(function(error) {
         alert(error.message);
     });
+    console.log('100');
+    if (firebase.auth().currentUser) {
+        console.log('Logged In');
+    } else {
+        console.log('error not logged in');
+    }
 }
 function signUp() {
     const txtEmail = document.getElementById('txtEmail');
@@ -22,8 +52,18 @@ function signUp() {
     const email = txtEmail.value;
     const pass = txtPassword.value;
     firebase.auth().createUserWithEmailAndPassword(email, pass).then(function (user) {
+        setTimeout(function() {}, 3000);
         window.location.href = "index";
-        // document.getElementById('profile').innerHTML = "Hi, " + txtEmail.substring(0, txtEmail.indexOf('@'));
+        document.getElementById('profile').innerHTML = "Hi, " + email.substring(0, email.indexOf('@'));
+    }).catch(function(error) {
+        alert(error.message);
+    });
+}
+
+function signOut() {
+    window.location.href = "/";
+    firebase.auth().signOut.then(function() {
+        window.location.href = "sign_in";
     }).catch(function(error) {
         alert(error.message);
     });
@@ -50,6 +90,11 @@ window.onclick = function(event) {
 };
 
 function getArtists() {
+    if (firebase.auth().currentUser) {
+        console.log('Logged In');
+    } else {
+        console.log('error not logged in');
+    }
     songArray = [];
     randoSongs = [];
     finalArray = [];
@@ -150,6 +195,9 @@ function createPlaylist(randoSongs) {
         x.send()
     }
 }
+function saveToFirebase() {
+    firebaseRef.child(user.uid).child($("#playlistName").val()).set(playlistEntry);
+}
 function stopMusic() {
     $("iframe").each(function() {
         var src= $(this).attr('src');
@@ -160,6 +208,7 @@ function stopMusic() {
         iframes[i].parentNode.removeChild(iframes[i]);
     }
 }
+
 function showDiv(playlistEntry) {
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
@@ -190,6 +239,8 @@ function showDiv(playlistEntry) {
         document.getElementById('playlistNames').appendChild(icon);
     }
 }
+
+
 
 function playSong(vidID) {
     stopMusic();

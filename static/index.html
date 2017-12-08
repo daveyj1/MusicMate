@@ -33,7 +33,7 @@
     <script src="js/index.js"></script>
     <title>MusicMatch</title>
 </head>
-<body class="bg" id="bodyTag">
+<body class="bg" id="bodyTag" onload="loadData()">
 <div class="container">
     <h1 class="welcome text-center">Welcome to MusicMatch! <i class="fa fa-play-circle" style="font-size:36px;"></i></h1>
     <div class="left-card card-container">
@@ -46,15 +46,20 @@
                 <hr>
                 <hr>
             </button>
-            <div id="myDropdown" class="dropdown-content">
-                <a href="#" onclick="showDiv(songArray)">Link 1</a>
-                <a href="#" onclick="showDiv(songArray)">Link 2</a>
-                <a href="#" onclick="showDiv(songArray)">Link 3</a>
-                <a href="#" onclick="showDiv(songArray)">Link 4</a>
-                <a href="#" onclick="showDiv(songArray)">Link 5</a>
+            <div id="myDropdown" class="dropdown-content" style="z-index: 9000">
+                <a href="#" onclick="showDiv(songArray)" id="link1">Link 1</a>
+                <a href="#" onclick="showDiv(songArray)" id="link2">Link 2</a>
+                <a href="#" onclick="showDiv(songArray)" id="link3">Link 3</a>
+                <a href="#" onclick="showDiv(songArray)" id="link4">Link 4</a>
+                <a href="#" onclick="showDiv(songArray)" id="link5">Link 5</a>
             </div>
         </div>
         </h5>
+        <form class="artist_form">
+            <br>
+            <br>
+            <button id="btnSignOut" class="btn btn-lg btn-primary" type="button" onclick="signOut()">Sign Out</button>
+        </form>
     </div>
     </div>
     </div>
@@ -70,6 +75,7 @@
             <input type="text" id="playlistName" class="artist_box" required>
             <hr>
             <button class="btn btn-lg btn-primary" type="button" onclick="getArtists()">Create Playlist</button>
+            <button class="btn btn-lg btn-primary" type="button" onclick="saveToFirebase()">Save Playlist</button>
         </form>
     </div>
     <div id="playlist" class="right-card card-container" style="display:none; overflow: auto;">
@@ -96,6 +102,11 @@
         messagingSenderId: "840617963782"
     };
     firebase.initializeApp(config);
+
+    //if (!firebase.auth().currentUser) {
+    //    window.location.href = "/";
+    //    alert('Must Be Signed In to Access That Page!')
+    //}
 </script>
 </body>
 </html>
