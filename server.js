@@ -53,7 +53,7 @@ app.post('/searchArtist', (request, response) => {
     let count = Object.keys(artistsObject).length;
     for (let key in artistsObject) {
         if (artistsObject.hasOwnProperty(key))
-            spotifyApi.searchTracks('artist:' + artistsObject[key],{limit: 50})
+            spotifyApi.searchTracks('artist:' + artistsObject[key], {limit: 50})
                 .then((data) => {
                     dataArray.push(data);
                     count--;
@@ -62,14 +62,18 @@ app.post('/searchArtist', (request, response) => {
                             dataArray
                         });
                     }
-                },(err) => {
+                }, (err) => {
                     errorFlag = true;
                     return response.status(400).json({
                         message: err
                     });
-                });
+                }).catch((err) => {
+                    return response.status(400).json({
+                       message: err
+                    });
+            });
     }
 });
 
-app.set('port', (process.env.PORT || 8501));
+app.set('port', (process.env.PORT || 8500));
 app.listen(app.get('port'));

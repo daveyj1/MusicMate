@@ -47,16 +47,15 @@
                 <hr>
             </button>
             <div id="myDropdown" class="dropdown-content" style="z-index: 9000">
-                <a href="#" onclick="showDiv(songArray)" id="link1">Link 1</a>
-                <a href="#" onclick="showDiv(songArray)" id="link2">Link 2</a>
-                <a href="#" onclick="showDiv(songArray)" id="link3">Link 3</a>
-                <a href="#" onclick="showDiv(songArray)" id="link4">Link 4</a>
-                <a href="#" onclick="showDiv(songArray)" id="link5">Link 5</a>
+                <a href="#" onclick="getPlaylistFirebase(this.id)" id="link1">Link 1</a>
+                <a href="#" onclick="getPlaylistFirebase(this.id)" id="link2">Link 2</a>
+                <a href="#" onclick="getPlaylistFirebase(this.id)" id="link3">Link 3</a>
+                <a href="#" onclick="getPlaylistFirebase(this.id)" id="link4">Link 4</a>
+                <a href="#" onclick="getPlaylistFirebase(this.id)" id="link5">Link 5</a>
             </div>
         </div>
         </h5>
         <form class="artist_form">
-            <br>
             <br>
             <button id="btnSignOut" class="btn btn-lg btn-primary" type="button" onclick="signOut()">Sign Out</button>
         </form>

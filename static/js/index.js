@@ -21,12 +21,17 @@ function loadData() {
     firebaseRef.child(user.uid).once("value").then(function (snapshot) {
        for(let key in snapshot.val()){
             if(counter <= 5){
-                $("#link" + counter).html(key);
+                let link = $("#link" + counter);
+                link.html(key);
+                link.attr({id : key});
+                link.append("<button>Delete</button>");
             }
             counter++;
        }
     });
 }
+
+
 
 function logIn() {
     const txtEmail = document.getElementById('txtEmail');
@@ -139,25 +144,31 @@ function getArtists() {
                     }
                 }
             }
-            shuffleArray(songArray);
-            arrayLength = songArray.length;
-            console.log(arrayLength);
-            for (let i = 0; i < 15; i++) {
-                let x = Math.floor(Math.random() * arrayLength);
-                if ($.inArray(songArray[x], randoSongs) !== -1) {
-                    i--;
-                    continue;
+            if(songArray.length > 0) {
+                shuffleArray(songArray);
+                arrayLength = songArray.length;
+                console.log(arrayLength);
+                for (let i = 0; i < 15; i++) {
+                    let x = Math.floor(Math.random() * arrayLength);
+                    if ($.inArray(songArray[x], randoSongs) !== -1) {
+                        i--;
+                        continue;
+                    }
+                    randoSongs.push(songArray[x]);
                 }
-                randoSongs.push(songArray[x]);
+                console.log(randoSongs);
+                createPlaylist(randoSongs);
+            } else {
+                alert('No matches. Please check that everyhing is typed correctly.')
             }
-            console.log(randoSongs);
-            createPlaylist(randoSongs);
         },
         error: (err) => {
             alert("ERROR");
             console.log(err);
         }
     }).done(()=>{
+        spinner.hide();
+    }).always(()=>{
         spinner.hide();
     });
 }
@@ -208,7 +219,17 @@ function stopMusic() {
         iframes[i].parentNode.removeChild(iframes[i]);
     }
 }
-
+function getPlaylistFirebase(playlistName) {
+    let array = [];
+    firebaseRef.child(user.uid).child(playlistName).once("value").then(function (snapshot) {
+        for(let key in snapshot.val()){
+            let entry = snapshot.val()[key];
+            array.push(entry);
+        }
+    }).then(function () {
+        showDiv(array);
+    });
+}
 function showDiv(playlistEntry) {
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";
@@ -239,8 +260,6 @@ function showDiv(playlistEntry) {
         document.getElementById('playlistNames').appendChild(icon);
     }
 }
-
-
 
 function playSong(vidID) {
     stopMusic();
