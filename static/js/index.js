@@ -22,15 +22,26 @@ function loadData() {
        for(let key in snapshot.val()){
             if(counter <= 5){
                 let link = $("#link" + counter);
+                let button = $("<button>");
+                button.attr({id : key});
+                button.html("Delete");
+                button.click(function (event) {
+                    event.stopPropagation();
+                    deletePlaylist(this.id);
+                });
                 link.html(key);
+                link.append(button);
                 link.attr({id : key});
-                link.append("<button>Delete</button>");
             }
             counter++;
        }
     });
 }
-
+function deletePlaylist(playlistName) {
+    firebaseRef.child(user.uid).child(playlistName).remove().then(()=>{
+        loadData();
+    });
+}
 
 
 function logIn() {
