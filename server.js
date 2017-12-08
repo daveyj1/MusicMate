@@ -75,5 +75,5 @@ app.post('/searchArtist', (request, response) => {
     }
 });
 
-app.set('port', (process.env.PORT || 8500));
+app.set('port', (process.env.PORT || 8501));
 app.listen(app.get('port'));

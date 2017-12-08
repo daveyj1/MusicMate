@@ -14,6 +14,7 @@ var finalArray = [];
 var playlistEntry = [];
 let firebaseRef = firebase.database().ref('users');
 let user;
+let userName = "";
 
 function loadData() {
     user = firebase.auth().currentUser;
@@ -24,7 +25,7 @@ function loadData() {
                 let link = $("#link" + counter);
                 let button = $("<button>");
                 button.attr({id : key});
-                button.html("Delete");
+                button.html("x");
                 button.click(function (event) {
                     event.stopPropagation();
                     deletePlaylist(this.id);
@@ -43,34 +44,28 @@ function deletePlaylist(playlistName) {
     });
 }
 
-
 function logIn() {
-    const txtEmail = document.getElementById('txtEmail');
-    const txtPassword = document.getElementById('txtPassword');
-    const email = txtEmail.value;
-    const pass = txtPassword.value;
+    let txtEmail = document.getElementById('txtEmail');
+    let txtPassword = document.getElementById('txtPassword');
+    let email = txtEmail.value;
+    let pass = txtPassword.value;
     firebase.auth().signInWithEmailAndPassword(email, pass).then(function (user) {
         window.location.href = "index";
-        document.getElementById('profile').innerHTML = "Hi, " + email.substring(0, email.indexOf('@'));
+        document.getElementById('profile').innerHTML = "Hi, " + userName;
     }).catch(function(error) {
         alert(error.message);
     });
-    console.log('100');
-    if (firebase.auth().currentUser) {
-        console.log('Logged In');
-    } else {
-        console.log('error not logged in');
-    }
 }
+
 function signUp() {
-    const txtEmail = document.getElementById('txtEmail');
-    const txtPassword = document.getElementById('txtPassword');
-    const email = txtEmail.value;
-    const pass = txtPassword.value;
+    let txtEmail = document.getElementById('txtEmail');
+    let txtPassword = document.getElementById('txtPassword');
+    let email = txtEmail.value;
+    let pass = txtPassword.value;
     firebase.auth().createUserWithEmailAndPassword(email, pass).then(function (user) {
         setTimeout(function() {}, 3000);
         window.location.href = "index";
-        document.getElementById('profile').innerHTML = "Hi, " + email.substring(0, email.indexOf('@'));
+        document.getElementById('profile').innerHTML = "Hi, " + userName;
     }).catch(function(error) {
         alert(error.message);
     });
@@ -190,7 +185,7 @@ function createPlaylist(randoSongs) {
     let counter = 0;
     let p = $('#playlistName').val();
     playlist["playlistName"] = p;
-    document.getElementById('pName').innerHTML = "Playlist: " + p;
+    document.getElementById('pName').innerHTML = p;
     for (let i = 0; i < randoSongs.length; i++) {
         let x = new XMLHttpRequest();
         let request = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + randoSongs[i] + "&key=AIzaSyB6777g3SQvVsgbtOG6iHlL8R2NAl_i1B4";
@@ -240,7 +235,9 @@ function getPlaylistFirebase(playlistName) {
     }).then(function () {
         showDiv(array);
     });
+    document.getElementById('pName').innerHTML = playlistName;
 }
+
 function showDiv(playlistEntry) {
     document.getElementById('playlist').style.display = "block";
     document.getElementById('playlistNames').innerHTML = "";

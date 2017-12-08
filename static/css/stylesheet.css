@@ -97,6 +97,7 @@ hr{
 .artist_form input[type=text],
 .artist_form input[type=text],
 .artist_form input[type=text],
+.artist_form input[type=password],
 .artist_form button {
     width: 100%;
     display: block;
@@ -179,6 +180,7 @@ hr{
     position: relative;
     display: inline-block;
 }
+
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
